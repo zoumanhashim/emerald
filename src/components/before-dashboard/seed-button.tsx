@@ -78,11 +78,11 @@ export const SeedButton: React.FC = () => {
   if (error) message = ` (error: ${error})`
 
   return (
-    <Fragment>
+    <div style={{ display: 'contents' }}>
       <button className="seedButton" onClick={handleClick}>
         Seed your database
       </button>
       {message}
-    </Fragment>
+    </div>
   )
 }
