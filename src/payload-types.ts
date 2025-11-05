@@ -178,7 +178,7 @@ export interface Snack {
    */
   imageUrl?: string | null;
   available?: boolean | null;
-  category: 'chips' | 'candy' | 'cookies' | 'nuts' | 'crackers' | 'drinks';
+  category: 'tops' | 'bottoms' | 'outerwear' | 'shoes' | 'accessories';
   updatedAt: string;
   createdAt: string;
 }
