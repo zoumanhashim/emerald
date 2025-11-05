@@ -124,6 +124,10 @@ export default async function HomePage() {
                     </DialogTrigger>
 
                     <DialogContent className="max-w-4xl p-0 overflow-hidden bg-white border border-gray-200">
+                      <DialogHeader className="sr-only">
+                        <DialogTitle>{item.name}</DialogTitle>
+                        <DialogDescription>{item.description}</DialogDescription>
+                      </DialogHeader>
                       <div className="grid md:grid-cols-2">
                         {/* Product Image */}
                         <div className="relative aspect-[3/4] bg-gray-50">
