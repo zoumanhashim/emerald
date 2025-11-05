@@ -1,7 +1,4 @@
-// storage-adapter-import-placeholder
-import nodemailer from 'nodemailer'
 import { postgresAdapter } from '@payloadcms/db-postgres'
-import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -55,15 +52,4 @@ export default buildConfig({
     push: process.env.DYAD_DISABLE_DB_PUSH === 'true' ? false : undefined,
   }),
   sharp,
-  email: nodemailerAdapter({
-    defaultFromAddress: process.env.GMAIL_USER || '',
-    defaultFromName: process.env.EMAIL_DEFAULT_FROM_NAME || 'Dyad app',
-    transport: await nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GOOGLE_APP_PASSWORD,
-      },
-    }),
-  }),
 })
