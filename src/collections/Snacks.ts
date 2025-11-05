@@ -7,7 +7,7 @@ export const Snacks: CollectionConfig = {
     useAsTitle: 'name',
   },
   access: {
-    read: anyone, // Anyone can read snacks (for public viewing)
+    read: anyone, // Anyone can read apparel (for public viewing)
     create: admins,
     update: admins,
     delete: admins,
@@ -54,12 +54,11 @@ export const Snacks: CollectionConfig = {
       name: 'category',
       type: 'select',
       options: [
-        { label: 'Chips', value: 'chips' },
-        { label: 'Candy', value: 'candy' },
-        { label: 'Cookies', value: 'cookies' },
-        { label: 'Nuts', value: 'nuts' },
-        { label: 'Crackers', value: 'crackers' },
-        { label: 'Drinks', value: 'drinks' },
+        { label: 'Tops', value: 'tops' },
+        { label: 'Bottoms', value: 'bottoms' },
+        { label: 'Outerwear', value: 'outerwear' },
+        { label: 'Shoes', value: 'shoes' },
+        { label: 'Accessories', value: 'accessories' },
       ],
       required: true,
     },

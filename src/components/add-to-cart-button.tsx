@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Plus, Check } from 'lucide-react'
+import { Plus } from 'lucide-react'
 
 import { useCart } from '@/lib/cart-context'
 import { Button } from '@/components/ui/button'
@@ -48,19 +48,13 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({ snack }) => {
     <Button
       onClick={handleAddToCart}
       disabled={isAdded}
-      className={isAdded ? 'bg-green-600 hover:bg-green-600' : ''}
+      className={`w-full py-4 text-sm font-light tracking-wider transition-all duration-300 ${
+        isAdded
+          ? 'bg-gray-800 hover:bg-gray-800 text-white'
+          : 'bg-black hover:bg-gray-800 text-white border-0'
+      }`}
     >
-      {isAdded ? (
-        <>
-          <Check className="h-4 w-4 mr-2" />
-          Added!
-        </>
-      ) : (
-        <>
-          <Plus className="h-4 w-4 mr-2" />
-          Add to Cart
-        </>
-      )}
+      {isAdded ? 'ADDED TO CART' : 'ADD TO CART'}
     </Button>
   )
 }

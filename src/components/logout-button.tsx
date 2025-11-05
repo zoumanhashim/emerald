@@ -28,10 +28,10 @@ export function LogoutButton() {
     <Button
       variant="ghost"
       size="sm"
-      className="hover:bg-gray-100 text-gray-700"
+      className="h-10 w-10 p-0 hover:bg-gray-50 rounded-full"
       onClick={handleLogout}
     >
-      Logout
+      <span className="text-sm font-light text-gray-600">×</span>
     </Button>
   )
 }

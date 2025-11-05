@@ -41,36 +41,37 @@ export default async function MyOrdersPage({
   })
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-8">
-        <Button asChild variant="ghost" className="mb-6">
-          <Link href="/">← Back to Home</Link>
-        </Button>
-
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">My Orders</h1>
+    <div className="min-h-screen bg-white">
+      <div className="container mx-auto px-4 py-12">
+        <div className="mb-12">
+          <Button asChild variant="ghost" className="mb-6 text-sm font-light hover:bg-gray-50">
+            <Link href="/">← BACK TO SHOP</Link>
+          </Button>
+          <h1 className="text-4xl font-light text-black">Your Orders</h1>
+        </div>
 
         {success && (
-          <Alert className="mb-6">
-            <AlertDescription>Order placed successfully! 🎉</AlertDescription>
+          <Alert className="mb-8 border-green-200 bg-green-50">
+            <AlertDescription className="text-green-800">Order placed successfully! Thank you for shopping with Schizo.</AlertDescription>
           </Alert>
         )}
 
         {orders.docs.length === 0 ? (
-          <Card>
-            <CardContent className="py-12 text-center">
-              <p className="text-gray-500 mb-6">You haven&apos;t placed any orders yet.</p>
-              <Button asChild>
-                <Link href="/">Browse Snacks</Link>
+          <Card className="border-gray-200">
+            <CardContent className="py-16 text-center">
+              <p className="text-gray-600 mb-6 text-lg">You haven&apos;t placed any orders yet.</p>
+              <Button asChild className="bg-black hover:bg-gray-800 text-white border-0 text-sm font-light tracking-wider px-8 py-3">
+                <Link href="/">START SHOPPING</Link>
               </Button>
             </CardContent>
           </Card>
         ) : (
-          <div className="space-y-6">
+          <div className="space-y-8">
             {orders.docs.map((order: any) => (
-              <Card key={order.id} className="overflow-hidden">
-                <CardHeader>
+              <Card key={order.id} className="border-gray-200 overflow-hidden">
+                <CardHeader className="bg-gray-50">
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-lg">Order #{String(order.id).slice(-8)}</CardTitle>
+                    <CardTitle className="text-lg font-light text-black">Order #{String(order.id).slice(-8)}</CardTitle>
                     <Badge
                       variant={
                         order.status === 'pending'
@@ -79,28 +80,33 @@ export default async function MyOrdersPage({
                             ? 'default'
                             : 'destructive'
                       }
+                      className="text-xs font-light"
                     >
                       {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
                     </Badge>
                   </div>
-                  <CardDescription>
-                    Ordered: {new Date(order.orderDate).toLocaleDateString()}
+                  <CardDescription className="text-gray-600">
+                    {new Date(order.orderDate).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
                   </CardDescription>
                 </CardHeader>
 
-                <CardContent>
-                  <div className="space-y-4">
+                <CardContent className="p-6">
+                  <div className="space-y-6">
                     {order.items.map((item: any, index: number) => (
                       <div
                         key={index}
-                        className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg"
+                        className="flex items-center gap-6 p-4 border border-gray-100 rounded-lg"
                       >
                         {item.snack &&
                           typeof item.snack === 'object' &&
                           item.snack.image &&
                           typeof item.snack.image === 'object' &&
                           item.snack.image.url && (
-                            <div className="relative w-16 h-16 rounded overflow-hidden">
+                            <div className="relative w-16 h-20 rounded-md overflow-hidden flex-shrink-0 bg-gray-50">
                               <Image
                                 src={item.snack.image.url}
                                 alt={item.snack.image.alt || item.snack.name}
@@ -110,7 +116,7 @@ export default async function MyOrdersPage({
                             </div>
                           )}
                         <div className="flex-1">
-                          <h4 className="font-medium">{item.snack?.name || 'Unknown Item'}</h4>
+                          <h4 className="font-light text-black text-lg">{item.snack?.name || 'Unknown Item'}</h4>
                           <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
                           <p className="text-sm text-gray-600">
                             Price: ${(item.snack?.price * item.quantity || 0).toFixed(2)}
@@ -120,10 +126,10 @@ export default async function MyOrdersPage({
                     ))}
                   </div>
 
-                  <Separator className="my-4" />
+                  <Separator className="my-6 bg-gray-200" />
 
                   <div className="text-right">
-                    <span className="text-lg font-bold">
+                    <span className="text-xl font-light text-black">
                       Total: ${order.totalAmount.toFixed(2)}
                     </span>
                   </div>

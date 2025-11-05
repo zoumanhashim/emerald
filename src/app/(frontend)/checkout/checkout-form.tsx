@@ -65,78 +65,80 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ user }) => {
 
   if (state.items.length === 0) {
     return (
-      <div className="text-center py-8">
-        <p className="text-gray-500 mb-4">Your cart is empty</p>
-        <Button asChild>
-          <Link href="/">Continue Shopping</Link>
+      <div className="text-center py-12">
+        <p className="text-gray-600 mb-6">Your cart is empty</p>
+        <Button asChild className="bg-black hover:bg-gray-800 text-white border-0 text-sm font-light tracking-wider px-8 py-3">
+          <Link href="/">CONTINUE SHOPPING</Link>
         </Button>
       </div>
     )
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-8">
       {/* Order Summary */}
       <div>
-        <h3 className="text-lg font-semibold mb-4">Order Summary</h3>
-        <div className="space-y-3">
+        <h3 className="text-2xl font-light text-black mb-6">Order Summary</h3>
+        <div className="space-y-6">
           {state.items.map((item) => (
-            <Card key={item.id} className="p-3">
-              <div className="flex items-center gap-3">
-                {item.image && (
-                  <div className="relative w-12 h-12 rounded-md overflow-hidden flex-shrink-0">
-                    <Image
-                      src={item.image.url}
-                      alt={item.image.alt || item.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                )}
-                <div className="flex-1">
-                  <h4 className="font-medium text-sm">{item.name}</h4>
-                  <Badge variant="secondary" className="text-xs">
-                    {item.category}
-                  </Badge>
+            <div key={item.id} className="flex gap-6 p-4 border border-gray-200">
+              {item.image && (
+                <div className="relative w-20 h-24 rounded-md overflow-hidden flex-shrink-0 bg-gray-50">
+                  <Image
+                    src={item.image.url}
+                    alt={item.image.alt || item.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              )}
+              <div className="flex-1 space-y-2">
+                <h4 className="font-light text-black text-lg">{item.name}</h4>
+                <Badge variant="secondary" className="text-xs bg-gray-100 text-gray-600">
+                  {item.category}
+                </Badge>
+                <div className="flex justify-between items-center">
                   <p className="text-sm text-gray-600">
                     ${item.price.toFixed(2)} × {item.quantity}
                   </p>
-                </div>
-                <div className="text-right">
-                  <p className="font-semibold">${(item.price * item.quantity).toFixed(2)}</p>
+                  <p className="text-lg font-medium text-black">
+                    ${(item.price * item.quantity).toFixed(2)}
+                  </p>
                 </div>
               </div>
-            </Card>
+            </div>
           ))}
         </div>
       </div>
 
-      <Separator />
+      <Separator className="bg-gray-200" />
 
       {/* Total */}
-      <div className="flex justify-between items-center text-lg font-semibold">
-        <span>Total:</span>
-        <span className="text-green-600">${getTotalPrice().toFixed(2)}</span>
+      <div className="flex justify-between items-center text-xl font-light">
+        <span className="text-black">Total:</span>
+        <span className="text-black">${getTotalPrice().toFixed(2)}</span>
       </div>
 
       {/* Error Message */}
       {error && (
-        <Alert variant="destructive">
-          <AlertDescription>{error}</AlertDescription>
+        <Alert variant="destructive" className="border-red-200 bg-red-50">
+          <AlertDescription className="text-red-800">{error}</AlertDescription>
         </Alert>
       )}
 
       {/* Submit Button */}
-      <div className="pt-4">
-        <Button type="submit" disabled={isSubmitting} className="w-full" size="lg">
-          {isSubmitting ? 'Placing Order...' : 'Place Order'}
+      <div className="pt-6">
+        <Button
+          type="submit"
+          disabled={isSubmitting}
+          className="w-full bg-black hover:bg-gray-800 text-white border-0 py-4 text-sm font-light tracking-wider"
+        >
+          {isSubmitting ? 'PROCESSING...' : 'COMPLETE ORDER'}
         </Button>
       </div>
 
-      <div className="text-sm text-gray-500 text-center">
-        <p>
-          Order will be placed for: {user.firstName} {user.lastName}
-        </p>
+      <div className="text-sm text-gray-500 text-center space-y-2">
+        <p>Order will be placed for: {user.firstName} {user.lastName}</p>
         <p>Email: {user.email}</p>
       </div>
     </form>
