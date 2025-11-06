@@ -63,6 +63,9 @@ export default async function HomePage() {
                 <p className="text-xl sm:text-2xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-light">
                   retarded apparel
                 </p>
+                <p className="text-sm text-gray-500 max-w-xl mx-auto leading-relaxed font-light">
+                  pre order, with limited quantity, hand painted
+                </p>
               </div>
             </div>
           </div>
