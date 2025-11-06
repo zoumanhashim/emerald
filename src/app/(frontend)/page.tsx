@@ -61,7 +61,7 @@ export default async function HomePage() {
                 </h1>
                 <div className="h-px w-24 bg-black mx-auto"></div>
                 <p className="text-xl sm:text-2xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-light">
-                  Minimal apparel for the modern mind
+                  retarded apparel
                 </p>
               </div>
             </div>
