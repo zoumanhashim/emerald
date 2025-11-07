@@ -81,8 +81,11 @@ function LoginForm() {
           subtitle={
             <>
               Don&apos;t have an account?{' '}
-              <Link href="/register" className="font-medium text-red-600 hover:text-red-500">
-                Sign up
+              <Link
+                href="/register"
+                className="font-medium text-yellow-300 hover:text-yellow-400"
+              >
+                Sign up to list items
               </Link>
             </>
           }
@@ -130,7 +133,7 @@ function LoginForm() {
                   </label>
                   <Link
                     href="/forgot-password"
-                    className="text-sm font-medium text-red-600 hover:text-red-500"
+                    className="text-sm font-medium text-yellow-300 hover:text-yellow-400"
                   >
                     Forgot password?
                   </Link>

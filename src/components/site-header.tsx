@@ -62,7 +62,7 @@ export function SiteHeader({
                   <Link href="/login">Sign In</Link>
                 </Button>
                 <Button asChild className={buttonClass}>
-                  <Link href="/register">Sign Up</Link>
+                  <Link href="/register">List Item</Link>
                 </Button>
               </div>
             )}
