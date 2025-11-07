@@ -70,7 +70,7 @@ export const CartSidebar: React.FC = () => {
                         src={item.image.url}
                         alt={item.image.alt || item.name}
                         fill
-                        className="object-contain"
+                        className="object-cover"
                         style={{ imageRendering: 'pixelated' }}
                       />
                     )}

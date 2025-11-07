@@ -81,7 +81,7 @@ export default async function HomePage() {
                                     : undefined) || item.name
                                 }
                                 fill
-                                className="object-contain"
+                                className="object-cover"
                                 style={{ imageRendering: 'pixelated' }}
                               />
                             )}
@@ -124,7 +124,7 @@ export default async function HomePage() {
                                   : undefined) || item.name
                               }
                               fill
-                              className="object-contain"
+                              className="object-cover"
                               style={{ imageRendering: 'pixelated' }}
                             />
                           )}
@@ -157,7 +157,7 @@ export default async function HomePage() {
                             ) : (
                               <Button
                                 asChild
-                                className="w-full bg-green-600 text-white border-2 border-t-green-500 border-l-green-500 border-b-green-800 border-r-green-800 hover:bg-green-700 active:border-t-green-800 active:border-l-green-800 active:border-b-green-500 active:border-r-green-500 rounded-none py-3 text-base"
+                                className="w-full bg-green-600 text-white border-2 border-t-green-500 border-l-green-500 border-b-green-800 border-r-green-800 hover:bg-green-700 active:border-t-green-800 active:border-l-green-800 active:border-b-green-500 active-border-r-green-500 rounded-none py-3 text-base"
                               >
                                 <Link href="/login">Sign In to Purchase</Link>
                               </Button>
