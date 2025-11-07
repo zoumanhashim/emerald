@@ -124,7 +124,7 @@ export default async function HomePage() {
                                   : undefined) || item.name
                               }
                               fill
-                              className="object-cover"
+                              className="object-contain"
                               style={{ imageRendering: 'pixelated' }}
                             />
                           )}
