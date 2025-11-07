@@ -35,26 +35,29 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({ snack }) => {
 
     setIsAdded(true)
 
-    // Show feedback for 1 second
     setTimeout(() => {
       setIsAdded(false)
-    }, 1000)
+    }, 1500)
 
-    // Optional: Open cart after adding item
-    // openCart()
+    setTimeout(() => {
+      openCart()
+    }, 300)
   }
+
+  const addedClass =
+    'bg-stone-600 text-stone-300 border-2 border-t-stone-800 border-l-stone-800 border-b-stone-500 border-r-stone-500'
+  const defaultClass =
+    'bg-green-600 text-white border-2 border-t-green-500 border-l-green-500 border-b-green-800 border-r-green-800 hover:bg-green-700 active:border-t-green-800 active:border-l-green-800 active:border-b-green-500 active:border-r-green-500'
 
   return (
     <Button
       onClick={handleAddToCart}
       disabled={isAdded}
-      className={`w-full py-4 text-sm font-light tracking-wider transition-all duration-300 ${
-        isAdded
-          ? 'bg-gray-800 hover:bg-gray-800 text-white'
-          : 'bg-black hover:bg-gray-800 text-white border-0'
+      className={`w-full py-3 text-base rounded-none transition-all duration-200 ${
+        isAdded ? addedClass : defaultClass
       }`}
     >
-      {isAdded ? 'ADDED TO CART' : 'ADD TO CART'}
+      {isAdded ? 'Added!' : 'Add to Cart'}
     </Button>
   )
 }
