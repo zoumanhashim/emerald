@@ -45,6 +45,9 @@ export default async function HomePage() {
             <p className="mt-4 text-xl text-stone-300 max-w-2xl mx-auto">
               Browse our collection of rare and valuable items.
             </p>
+            <p className="mt-6 text-lg text-yellow-300 tracking-wider font-bold">
+              limited quantity crypto only
+            </p>
           </div>
         </section>
 

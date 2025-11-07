@@ -30,10 +30,10 @@ export function SiteHeader({
         <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link
             href="/"
-            className="text-2xl hover:text-yellow-300 transition-colors"
+            className="text-xl hover:text-yellow-300 transition-colors"
             style={{ fontFamily: "'Press Start 2P', cursive" }}
           >
-            Dyad Store
+            those who <strong className="text-yellow-300">strugle</strong> store
           </Link>
 
           {/* User Actions */}
@@ -77,10 +77,10 @@ export function SiteHeader({
     <div className={`text-center ${className}`}>
       <Link
         href="/"
-        className="text-3xl hover:text-yellow-300 transition-colors"
+        className="text-2xl hover:text-yellow-300 transition-colors"
         style={{ fontFamily: "'Press Start 2P', cursive" }}
       >
-        Dyad Store
+        those who <strong className="text-yellow-300">strugle</strong> store
       </Link>
       {title && <h2 className="mt-6 text-2xl text-stone-100">{title}</h2>}
       {subtitle && <div className="mt-2 text-lg text-stone-300">{subtitle}</div>}
