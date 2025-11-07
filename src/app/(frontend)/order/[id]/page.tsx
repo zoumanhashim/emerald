@@ -37,7 +37,7 @@ export default async function OrderPage({ params }: OrderPageProps) {
   if (!snack || !snack.available) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <div className="container mx-auto px-4 py-8">
+        <div className="w-full max-w-7xl mx-auto px-4 py-8">
           <Card>
             <CardHeader>
               <CardTitle>Snack Not Available</CardTitle>
@@ -56,7 +56,7 @@ export default async function OrderPage({ params }: OrderPageProps) {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-8">
+      <div className="w-full max-w-7xl mx-auto px-4 py-8">
         <Button asChild variant="ghost" className="mb-6">
           <Link href="/">← Back to Snacks</Link>
         </Button>

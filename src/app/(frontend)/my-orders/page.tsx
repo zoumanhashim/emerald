@@ -42,7 +42,7 @@ export default async function MyOrdersPage({
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="container mx-auto px-4 py-12">
+      <div className="w-full max-w-7xl mx-auto px-4 py-12">
         <div className="mb-12">
           <Button asChild variant="ghost" className="mb-6 text-sm font-light hover:bg-gray-50">
             <Link href="/">← BACK TO SHOP</Link>

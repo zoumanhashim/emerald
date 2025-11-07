@@ -40,7 +40,7 @@ export default async function HomePage() {
       <main className="pt-20">
         {/* Hero Section */}
         <section className="py-16 md:py-24 text-center bg-black/20 border-b-4 border-black/50">
-          <div className="container mx-auto px-4">
+          <div className="w-full max-w-7xl mx-auto px-4">
             <h1 className="text-4xl md:text-6xl text-white">Auction House</h1>
             <p className="mt-4 text-xl text-stone-300 max-w-2xl mx-auto">
               Browse our collection of rare and valuable items.
@@ -53,7 +53,7 @@ export default async function HomePage() {
 
         {/* Collection Section */}
         <section id="collection" className="py-12 md:py-16">
-          <div className="container mx-auto px-4">
+          <div className="w-full max-w-7xl mx-auto px-4">
             {snacks.docs.length === 0 ? (
               <div className="text-center py-20 bg-black/20 border-2 border-stone-900 p-8">
                 <h2 className="text-2xl">Restocking...</h2>

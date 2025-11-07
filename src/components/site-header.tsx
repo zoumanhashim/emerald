@@ -27,7 +27,7 @@ export function SiteHeader({
       <header
         className={`fixed top-0 left-0 right-0 z-50 bg-stone-800/90 backdrop-blur-sm border-b-4 border-black/50 ${className}`}
       >
-        <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-7xl mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link
             href="/"
             className="text-xl hover:text-yellow-300 transition-colors"

@@ -33,7 +33,7 @@ export default async function SnackPage({ params }: { params: Promise<{ id: stri
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <main className="container mx-auto px-4 py-8">
+      <main className="w-full max-w-7xl mx-auto px-4 py-8">
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
           <div>
             {((snack.image && typeof snack.image === 'object') || snack.imageUrl) && (
