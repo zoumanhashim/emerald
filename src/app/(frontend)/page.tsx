@@ -41,7 +41,7 @@ export default async function HomePage() {
         {/* Hero Section */}
         <section className="py-16 md:py-24 text-center bg-black/20 border-b-4 border-black/50">
           <div className="w-full max-w-7xl mx-auto px-4">
-            <h1 className="text-4xl md:text-6xl text-white">Auction House</h1>
+            <h1 className="text-4xl md:text-6xl text-white">those who strugle</h1>
             <p className="mt-4 text-xl text-stone-300 max-w-2xl mx-auto">
               Browse our collection of rare and valuable items.
             </p>

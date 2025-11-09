@@ -33,7 +33,7 @@ export function SiteHeader({
             className="text-xl hover:text-yellow-300 transition-colors"
             style={{ fontFamily: "'Press Start 2P', cursive" }}
           >
-            those who <strong className="text-yellow-300">strugle</strong> store
+            store
           </Link>
 
           {/* User Actions */}
@@ -80,7 +80,7 @@ export function SiteHeader({
         className="text-2xl hover:text-yellow-300 transition-colors"
         style={{ fontFamily: "'Press Start 2P', cursive" }}
       >
-        those who <strong className="text-yellow-300">strugle</strong> store
+        store
       </Link>
       {title && <h2 className="mt-6 text-2xl text-stone-100">{title}</h2>}
       {subtitle && <div className="mt-2 text-lg text-stone-300">{subtitle}</div>}
