@@ -72,122 +72,110 @@ export default async function HomePage() {
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                {emeralds.docs.map((item: any) => (
-                  <Dialog key={item.id}>
-                    <DialogTrigger asChild>
-                      <div className="group cursor-pointer text-center border border-border rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
-                        <div className="bg-muted/30 aspect-square flex items-center justify-center">
-                          <div className="relative w-full h-full">
-                            {((item.image && typeof item.image === 'object') ||
-                              item.imageUrl) && (
-                              <Image
-                                src={
-                                  item.image && typeof item.image === 'object'
-                                    ? item.image.url
-                                    : item.imageUrl
-                                }
-                                alt={
-                                  (item.image && typeof item.image === 'object'
-                                    ? item.image.alt
-                                    : undefined) || item.name
-                                }
-                                fill
-                                className="object-cover group-hover:scale-105 transition-transform duration-300"
-                              />
-                            )}
+                {emeralds.docs.map((item: any) => {
+                  const imageUrl =
+                    item.image && typeof item.image === 'object' && item.image.url
+                      ? item.image.url
+                      : item.imageUrl
+                  const imageAlt =
+                    item.image && typeof item.image === 'object' && item.image.alt
+                      ? item.image.alt
+                      : item.name
+
+                  return (
+                    <Dialog key={item.id}>
+                      <DialogTrigger asChild>
+                        <div className="group cursor-pointer text-center border border-border rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+                          <div className="bg-muted/30 aspect-square flex items-center justify-center">
+                            <div className="relative w-full h-full">
+                              {imageUrl && (
+                                <Image
+                                  src={imageUrl}
+                                  alt={imageAlt}
+                                  fill
+                                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                                />
+                              )}
+                            </div>
                           </div>
-                        </div>
-                        <div className="p-4 bg-background">
-                          <h3 className="font-semibold text-lg truncate">{item.name}</h3>
-                          <p className="text-primary font-bold mt-1">
-                            ${item.price.toFixed(2)}
-                          </p>
-                        </div>
-                      </div>
-                    </DialogTrigger>
-
-                    <DialogContent className="bg-background border-border p-0 max-w-4xl shadow-2xl rounded-lg">
-                      <div className="grid md:grid-cols-2 gap-0">
-                        {/* Product Image */}
-                        <div className="relative aspect-square bg-muted/30">
-                          {((item.image && typeof item.image === 'object') ||
-                            item.imageUrl) && (
-                            <Image
-                              src={
-                                item.image && typeof item.image === 'object'
-                                  ? item.image.url
-                                  : item.imageUrl
-                              }
-                              alt={
-                                (item.image && typeof item.image === 'object'
-                                  ? item.image.alt
-                                  : undefined) || item.name
-                              }
-                              fill
-                              className="object-contain"
-                            />
-                          )}
-                        </div>
-
-                        {/* Product Details */}
-                        <div className="p-8 flex flex-col">
-                          <DialogHeader>
-                            <DialogTitle className="text-3xl font-bold text-secondary">
-                              {item.name}
-                            </DialogTitle>
-                            <DialogDescription className="text-muted-foreground uppercase text-sm tracking-widest pt-1">
-                              {item.category}
-                            </DialogDescription>
-                          </DialogHeader>
-
-                          <p className="text-foreground/80 mt-4 leading-relaxed flex-grow">
-                            {item.description}
-                          </p>
-
-                          <div className="mt-6 space-y-2 text-sm">
-                            <p>
-                              <strong>Carat:</strong> {item.details.caratWeight} ct
-                            </p>
-                            <p>
-                              <strong>Dimensions:</strong> {item.details.dimensions} mm
-                            </p>
-                            <p>
-                              <strong>Clarity:</strong> {item.details.clarity}
-                            </p>
-                            <p>
-                              <strong>Origin:</strong> {item.details.origin}
-                            </p>
-                            {item.details.certification && (
-                              <p>
-                                <strong>Certification:</strong> {item.details.certification}
-                              </p>
-                            )}
-                          </div>
-
-                          <div className="mt-6">
-                            <p className="text-3xl font-bold text-primary">
+                          <div className="p-4 bg-background">
+                            <h3 className="font-semibold text-lg truncate">{item.name}</h3>
+                            <p className="text-primary font-bold mt-1">
                               ${item.price.toFixed(2)}
                             </p>
                           </div>
+                        </div>
+                      </DialogTrigger>
 
-                          <div className="mt-6">
-                            {user ? (
-                              <AddToCartButton snack={item} />
-                            ) : (
-                              <Button
-                                asChild
-                                className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90"
-                                size="lg"
-                              >
-                                <Link href="/login">Sign In to Purchase</Link>
-                              </Button>
+                      <DialogContent className="bg-background border-border p-0 max-w-4xl shadow-2xl rounded-lg">
+                        <div className="grid md:grid-cols-2 gap-0">
+                          {/* Product Image */}
+                          <div className="relative aspect-square bg-muted/30">
+                            {imageUrl && (
+                              <Image src={imageUrl} alt={imageAlt} fill className="object-contain" />
                             )}
                           </div>
+
+                          {/* Product Details */}
+                          <div className="p-8 flex flex-col">
+                            <DialogHeader>
+                              <DialogTitle className="text-3xl font-bold text-secondary">
+                                {item.name}
+                              </DialogTitle>
+                              <DialogDescription className="text-muted-foreground uppercase text-sm tracking-widest pt-1">
+                                {item.category}
+                              </DialogDescription>
+                            </DialogHeader>
+
+                            <p className="text-foreground/80 mt-4 leading-relaxed flex-grow">
+                              {item.description}
+                            </p>
+
+                            <div className="mt-6 space-y-2 text-sm">
+                              <p>
+                                <strong>Carat:</strong> {item.details.caratWeight} ct
+                              </p>
+                              <p>
+                                <strong>Dimensions:</strong> {item.details.dimensions} mm
+                              </p>
+                              <p>
+                                <strong>Clarity:</strong> {item.details.clarity}
+                              </p>
+                              <p>
+                                <strong>Origin:</strong> {item.details.origin}
+                              </p>
+                              {item.details.certification && (
+                                <p>
+                                  <strong>Certification:</strong> {item.details.certification}
+                                </p>
+                              )}
+                            </div>
+
+                            <div className="mt-6">
+                              <p className="text-3xl font-bold text-primary">
+                                ${item.price.toFixed(2)}
+                              </p>
+                            </div>
+
+                            <div className="mt-6">
+                              {user ? (
+                                <AddToCartButton snack={item} />
+                              ) : (
+                                <Button
+                                  asChild
+                                  className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90"
+                                  size="lg"
+                                >
+                                  <Link href="/login">Sign In to Purchase</Link>
+                                </Button>
+                              )}
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </DialogContent>
-                  </Dialog>
-                ))}
+                      </DialogContent>
+                    </Dialog>
+                  )
+                })}
               </div>
             )}
           </div>
