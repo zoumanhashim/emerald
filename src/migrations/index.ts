@@ -1,1 +1,1 @@
-export const migrations = []
+export * from './001_rename_category_enum'
