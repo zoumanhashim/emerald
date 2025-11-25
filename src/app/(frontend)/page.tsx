@@ -31,6 +31,7 @@ export default async function HomePage() {
       },
     },
     sort: 'createdAt',
+    depth: 2,
   })
 
   return (
