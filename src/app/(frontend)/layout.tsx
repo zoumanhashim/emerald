@@ -1,6 +1,7 @@
 import React from 'react'
 import { CartProvider } from '@/lib/cart-context'
 import { CartSidebar } from '@/components/cart-sidebar'
+import { Footer } from '@/components/footer'
 import '../globals.css'
 
 export const metadata = {
@@ -15,7 +16,10 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en">
       <body>
         <CartProvider>
-          <main>{children}</main>
+          <div className="flex flex-col min-h-screen">
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </div>
           <CartSidebar />
         </CartProvider>
       </body>

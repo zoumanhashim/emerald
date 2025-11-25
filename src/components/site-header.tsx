@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import { Gem } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { CartButton } from '@/components/cart-button'
 import { LogoutButton } from '@/components/logout-button'
@@ -29,9 +30,10 @@ export function SiteHeader({
         <div className="w-full max-w-7xl mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link
             href="/"
-            className="text-xl font-bold text-secondary hover:text-secondary/90 transition-colors"
+            className="flex items-center gap-2 text-xl font-bold text-secondary hover:text-secondary/90 transition-colors"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
+            <Gem className="h-5 w-5" />
             Panjshir Valley
           </Link>
 
@@ -76,9 +78,10 @@ export function SiteHeader({
     <div className={`text-center ${className}`}>
       <Link
         href="/"
-        className="text-2xl font-bold text-secondary hover:text-secondary/90 transition-colors"
+        className="inline-flex items-center gap-3 text-2xl font-bold text-secondary hover:text-secondary/90 transition-colors"
         style={{ fontFamily: "'Playfair Display', serif" }}
       >
+        <Gem className="h-6 w-6" />
         Panjshir Valley Emerald Bridge
       </Link>
       {title && <h2 className="mt-6 text-3xl font-bold">{title}</h2>}
