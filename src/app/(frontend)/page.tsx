@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 export default function HomePage() {
   return (
@@ -10,10 +11,14 @@ export default function HomePage() {
           </div>
           <div className="flex items-center gap-2 md:gap-4">
             <div className="flex items-center gap-2">
-              <button className="text-sm font-light text-gray-600">Sign In</button>
-              <button className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md">
-                Register
-              </button>
+              <Link href="/login">
+                <button className="text-sm font-light text-gray-600 hover:text-gray-900">Sign In</button>
+              </Link>
+              <Link href="/register">
+                <button className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md">
+                  Register
+                </button>
+              </Link>
             </div>
           </div>
         </div>
