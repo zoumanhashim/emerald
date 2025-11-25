@@ -10,7 +10,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Badge } from '@/components/ui/badge'
 
 interface ProductCardProps {
-  emerald: Emerald
+  emerald: Emerald,
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ emerald }) => {
@@ -31,39 +31,41 @@ export const ProductCard: React.FC<ProductCardProps> = ({ emerald }) => {
   }
 
   return (
-    <Card className="overflow-hidden flex flex-col h-full transition-shadow hover:shadow-lg">
-      <CardHeader className="p-0">
-        <Link href={`/`}>
-          <div className="aspect-square relative bg-muted/50 overflow-hidden">
+    <Card className='overflow-hidden flex flex-col h-full transition-shadow hover:shadow-lg'>
+      <CardHeader className='p-0'>
+        <Link href='/'>
+          <div className='aspect-square relative bg-muted/50 overflow-hidden'>
             {imageUrl ? (
               <Image
                 src={imageUrl}
-                alt={typeof emerald.image === 'object' ? emerald.image?.alt || emerald.name : emerald.name}
+                alt={
+                  typeof emerald.image === 'object' ? emerald.image?.alt || emerald.name : emerald.name
+                }
                 fill
-                className="object-cover transition-transform duration-300 hover:scale-105"
+                className='object-cover transition-transform duration-300 hover:scale-105'
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center bg-muted">
-                <Gem className="h-12 w-12 text-muted-foreground" />
+              <div className='w-full h-full flex items-center justify-center bg-muted'>
+                <Gem className='h-12 w-12 text-muted-foreground' />
               </div>
             )}
           </div>
         </Link>
       </CardHeader>
-      <CardContent className="p-4 flex-grow">
-        <div className="flex justify-between items-start gap-2">
-          <CardTitle className="text-lg font-semibold leading-tight">
-            <Link href={`/`} className="hover:text-primary transition-colors">
+      <CardContent className='p-4 flex-grow'>
+        <div className='flex justify-between items-start gap-2'>
+          <CardTitle className='text-lg font-semibold leading-tight'>
+            <Link href='/' className='hover:text-primary transition-colors'>
               {emerald.name}
             </Link>
           </CardTitle>
-          <Badge variant="secondary" className="capitalize flex-shrink-0">
+          <Badge variant='secondary' className='capitalize flex-shrink-0'>
             {emerald.category}
           </Badge>
         </div>
-        <p className="text-xl font-bold text-primary mt-2">${emerald.price.toFixed(2)}</p>
+        <p className='text-xl font-bold text-primary mt-2'>${emerald.price.toFixed(2)}</p>
       </CardContent>
-      <CardFooter className="p-4 pt-0">
+      <CardFooter className='p-4 pt-0'>
         <AddToCartButton snack={snackForButton} />
       </CardFooter>
     </Card>
