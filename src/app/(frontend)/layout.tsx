@@ -4,8 +4,8 @@ import { CartSidebar } from '@/components/cart-sidebar'
 import '../globals.css'
 
 export const metadata = {
-  description: 'A mini store template using Payload built with Dyad.',
-  title: 'Dyad Portal Mini Store Template',
+  title: 'Panjshir Valley Emerald Bridge',
+  description: 'Ethically sourced emeralds from the Panjshir Valley.',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
@@ -21,4 +21,3 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       </body>
     </html>
   )
-}

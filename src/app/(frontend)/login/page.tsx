@@ -59,7 +59,6 @@ function LoginForm() {
       })
 
       if (response.ok) {
-        // Login successful, redirect to home
         router.push('/')
         router.refresh()
       } else {
@@ -74,24 +73,20 @@ function LoginForm() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
+    <div className="min-h-screen bg-background flex items-center justify-center py-12 px-4">
       <div className="max-w-md w-full space-y-8">
         <SiteHeader
           title="Sign in to your account"
           subtitle={
             <>
               Don&apos;t have an account?{' '}
-              <Link
-                href="/register"
-                className="font-medium text-yellow-300 hover:text-yellow-400"
-              >
-                Sign up to list items
+              <Link href="/register" className="font-medium text-primary hover:text-primary/90">
+                Register here
               </Link>
             </>
           }
         />
 
-        {/* Login Form */}
         <Card>
           <CardHeader>
             <CardTitle>Welcome back</CardTitle>
@@ -112,7 +107,7 @@ function LoginForm() {
               )}
 
               <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium text-gray-700">
+                <label htmlFor="email" className="text-sm font-medium">
                   Email address
                 </label>
                 <Input
@@ -128,12 +123,12 @@ function LoginForm() {
 
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <label htmlFor="password" className="text-sm font-medium text-gray-700">
+                  <label htmlFor="password" className="text-sm font-medium">
                     Password
                   </label>
                   <Link
                     href="/forgot-password"
-                    className="text-sm font-medium text-yellow-300 hover:text-yellow-400"
+                    className="text-sm font-medium text-primary hover:text-primary/90"
                   >
                     Forgot password?
                   </Link>
@@ -149,19 +144,16 @@ function LoginForm() {
                 />
               </div>
 
-              <Button type="submit" className="w-full" disabled={isSubmitting}>
+              <Button
+                type="submit"
+                className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90"
+                disabled={isSubmitting}
+              >
                 {isSubmitting ? 'Signing in...' : 'Sign in'}
               </Button>
             </form>
           </CardContent>
         </Card>
-
-        {/* Back to Home */}
-        <div className="text-center">
-          <Link href="/" className="text-sm text-gray-600 hover:text-gray-900">
-            ← Back to home
-          </Link>
-        </div>
       </div>
     </div>
   )
@@ -171,7 +163,9 @@ export default function LoginPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center">Loading...</div>
+        <div className="min-h-screen bg-background flex items-center justify-center">
+          Loading...
+        </div>
       }
     >
       <LoginForm />

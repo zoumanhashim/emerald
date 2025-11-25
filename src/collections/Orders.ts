@@ -7,10 +7,10 @@ export const Orders: CollectionConfig = {
     useAsTitle: 'id',
   },
   access: {
-    read: adminsOrOwner('user'), // Admins can read all orders, users can only read their own
-    create: authenticated, // Any authenticated user can create orders
-    update: admins, // Only admins can update orders
-    delete: admins, // Only admins can delete orders
+    read: adminsOrOwner('user'),
+    create: authenticated,
+    update: admins,
+    delete: admins,
     admin: adminsOnly,
   },
   fields: [
@@ -25,9 +25,10 @@ export const Orders: CollectionConfig = {
       type: 'array',
       fields: [
         {
-          name: 'snack',
+          name: 'snack', // Keep this name to match client-side expectations from cart
+          label: 'Emerald',
           type: 'relationship',
-          relationTo: 'snacks',
+          relationTo: 'emeralds', // Changed from 'snacks'
           required: true,
         },
         {
