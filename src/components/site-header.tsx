@@ -19,19 +19,15 @@ export function SiteHeader({
   subtitle,
   className = '',
 }: SiteHeaderProps) {
-  const buttonClass =
-    'bg-stone-600 text-white border-2 border-t-stone-500 border-l-stone-500 border-b-stone-800 border-r-stone-800 hover:bg-stone-700 active:border-t-stone-800 active:border-l-stone-800 active:border-b-stone-500 active:border-r-stone-500 rounded-none px-4 py-2 text-xs'
-
   if (variant === 'full') {
     return (
       <header
-        className={`fixed top-0 left-0 right-0 z-50 bg-stone-800/90 backdrop-blur-sm border-b-4 border-black/50 ${className}`}
+        className={`fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b ${className}`}
       >
         <div className="w-full max-w-7xl mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link
             href="/"
-            className="text-xl hover:text-yellow-300 transition-colors"
-            style={{ fontFamily: "'Press Start 2P', cursive" }}
+            className="text-xl font-bold hover:text-primary transition-colors"
           >
             store
           </Link>
@@ -41,14 +37,14 @@ export function SiteHeader({
             {user ? (
               <>
                 <div className="hidden sm:flex items-center gap-2">
-                  <span className="text-sm text-stone-300 hidden md:inline">
+                  <span className="text-sm text-muted-foreground hidden md:inline">
                     {user.firstName || user.email}
                   </span>
-                  <Button asChild variant="ghost" className="hover:bg-stone-700 text-stone-300">
+                  <Button asChild variant="ghost">
                     <Link href="/my-orders">Orders</Link>
                   </Button>
                   {user.role === 'admin' && (
-                    <Button asChild variant="ghost" className="hover:bg-stone-700 text-stone-300">
+                    <Button asChild variant="ghost">
                       <Link href="/admin-dashboard">Admin</Link>
                     </Button>
                   )}
@@ -58,10 +54,10 @@ export function SiteHeader({
               </>
             ) : (
               <div className="flex items-center gap-2">
-                <Button asChild variant="ghost" className="hover:bg-stone-700 text-stone-300">
+                <Button asChild variant="ghost">
                   <Link href="/login">Sign In</Link>
                 </Button>
-                <Button asChild className={buttonClass}>
+                <Button asChild>
                   <Link href="/register">List Item</Link>
                 </Button>
               </div>
@@ -77,13 +73,12 @@ export function SiteHeader({
     <div className={`text-center ${className}`}>
       <Link
         href="/"
-        className="text-2xl hover:text-yellow-300 transition-colors"
-        style={{ fontFamily: "'Press Start 2P', cursive" }}
+        className="text-2xl font-bold hover:text-primary transition-colors"
       >
         store
       </Link>
-      {title && <h2 className="mt-6 text-2xl text-stone-100">{title}</h2>}
-      {subtitle && <div className="mt-2 text-lg text-stone-300">{subtitle}</div>}
+      {title && <h2 className="mt-6 text-3xl font-bold text-foreground">{title}</h2>}
+      {subtitle && <div className="mt-2 text-lg text-muted-foreground">{subtitle}</div>}
     </div>
   )
 }
