@@ -44,7 +44,7 @@ export default async function HomePage() {
           <div className="w-full max-w-7xl mx-auto px-4">
             <h1 className="text-4xl md:text-6xl">those who strugle</h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-              all gems certified and authentic
+              Crafted by nature, perfected by time.
             </p>
           </div>
         </section>
