@@ -1,13 +1,13 @@
 import type { CollectionConfig } from 'payload'
 import { admins, adminsOnly, anyone } from './access'
 
-export const Snacks: CollectionConfig = {
-  slug: 'snacks',
+export const Products: CollectionConfig = {
+  slug: 'products',
   admin: {
     useAsTitle: 'name',
   },
   access: {
-    read: anyone, // Anyone can read apparel (for public viewing)
+    read: anyone,
     create: admins,
     update: admins,
     delete: admins,
@@ -54,11 +54,11 @@ export const Snacks: CollectionConfig = {
       name: 'category',
       type: 'select',
       options: [
-        { label: 'Tops', value: 'tops' },
-        { label: 'Bottoms', value: 'bottoms' },
-        { label: 'Outerwear', value: 'outerwear' },
-        { label: 'Shoes', value: 'shoes' },
-        { label: 'Accessories', value: 'accessories' },
+        { label: 'Emerald', value: 'emerald' },
+        { label: 'Ruby', value: 'ruby' },
+        { label: 'Sapphire', value: 'sapphire' },
+        { label: 'Diamond', value: 'diamond' },
+        { label: 'Other', value: 'other' },
       ],
       required: true,
     },

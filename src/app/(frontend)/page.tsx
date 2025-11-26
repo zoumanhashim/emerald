@@ -23,8 +23,8 @@ export default async function HomePage() {
   const payload = await getPayload({ config: payloadConfig })
   const { user } = await payload.auth({ headers })
 
-  const snacks = await payload.find({
-    collection: 'snacks',
+  const products = await payload.find({
+    collection: 'products',
     where: {
       available: {
         equals: true,
@@ -51,14 +51,14 @@ export default async function HomePage() {
         {/* Collection Section */}
         <section id="collection" className="py-12 md:py-16">
           <div className="w-full max-w-7xl mx-auto px-4">
-            {snacks.docs.length === 0 ? (
+            {products.docs.length === 0 ? (
               <div className="text-center py-20 bg-black/20 border-2 border-stone-900 p-8">
-                <h2 className="text-2xl">Restocking...</h2>
+                <h2 className="text-2xl">No products available...</h2>
                 <p className="mt-4 text-stone-300">New items will be available soon!</p>
               </div>
             ) : (
               <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-4">
-                {snacks.docs.map((item: any) => (
+                {products.docs.map((item: any) => (
                   <Dialog key={item.id}>
                     <DialogTrigger asChild>
                       <div className="group cursor-pointer text-center">
@@ -150,7 +150,7 @@ export default async function HomePage() {
 
                           <div className="mt-6">
                             {user ? (
-                              <AddToCartButton snack={item} />
+                              <AddToCartButton product={item} />
                             ) : (
                               <Button
                                 asChild

@@ -101,25 +101,25 @@ export default async function MyOrdersPage({
                         key={index}
                         className="flex items-center gap-6 p-4 border border-gray-100 rounded-lg"
                       >
-                        {item.snack &&
-                          typeof item.snack === 'object' &&
-                          item.snack.image &&
-                          typeof item.snack.image === 'object' &&
-                          item.snack.image.url && (
+                        {item.product &&
+                          typeof item.product === 'object' &&
+                          item.product.image &&
+                          typeof item.product.image === 'object' &&
+                          item.product.image.url && (
                             <div className="relative w-16 h-20 rounded-md overflow-hidden flex-shrink-0 bg-gray-50">
                               <Image
-                                src={item.snack.image.url}
-                                alt={item.snack.image.alt || item.snack.name}
+                                src={item.product.image.url}
+                                alt={item.product.image.alt || item.product.name}
                                 fill
                                 className="object-cover"
                               />
                             </div>
                           )}
                         <div className="flex-1">
-                          <h4 className="font-light text-black text-lg">{item.snack?.name || 'Unknown Item'}</h4>
+                          <h4 className="font-light text-black text-lg">{item.product?.name || 'Unknown Item'}</h4>
                           <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
                           <p className="text-sm text-gray-600">
-                            Price: ${(item.snack?.price * item.quantity || 0).toFixed(2)}
+                            Price: ${(item.product?.price * item.quantity || 0).toFixed(2)}
                           </p>
                         </div>
                       </div>

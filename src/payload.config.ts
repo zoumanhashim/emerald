@@ -7,7 +7,7 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
-import { Snacks } from './collections/Snacks'
+import { Products } from './collections/Products'
 import { Orders } from './collections/Orders'
 
 const filename = fileURLToPath(import.meta.url)
@@ -37,7 +37,7 @@ export default buildConfig({
   },
   serverURL: getServerSideURL(),
   cors: [getServerSideURL()].filter(Boolean) as string[],
-  collections: [Users, Media, Snacks, Orders],
+  collections: [Users, Media, Products, Orders],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

@@ -8,17 +8,17 @@ import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Separator } from '@/components/ui/separator'
 
 interface OrderFormProps {
-  snack: any
+  product: any
   user: any
 }
 
-export default function OrderForm({ snack, user }: OrderFormProps) {
+export default function OrderForm({ product, user }: OrderFormProps) {
   const [quantity, setQuantity] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
   const router = useRouter()
 
-  const totalPrice = (snack.price * quantity).toFixed(2)
+  const totalPrice = (product.price * quantity).toFixed(2)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -35,7 +35,7 @@ export default function OrderForm({ snack, user }: OrderFormProps) {
           user: user.id,
           items: [
             {
-              snack: snack.id,
+              product: product.id,
               quantity,
             },
           ],

@@ -1,11 +1,6 @@
-// Next.js revalidation errors are normal when seeding the database without a server running
-// i.e. running `yarn seed` locally instead of using the admin UI within an active app
-// The app is not running to revalidate the pages and so the API routes are not available
-
 import { Payload, PayloadRequest } from 'payload'
-import { snackSeedData } from './snacks'
+import { productSeedData } from './products'
 
-// These error messages can be ignored: `Error hitting revalidate route for...`
 export const seed = async ({
   payload,
   req,
@@ -16,26 +11,26 @@ export const seed = async ({
   payload.logger.info('Seeding database...')
 
   try {
-    // Create snacks with placeholder image URLs
-    const snackPromises = snackSeedData.map(async (snack) => {
+    // Create products with placeholder image URLs
+    const productPromises = productSeedData.map(async (product) => {
       return await payload.create({
-        collection: 'snacks',
+        collection: 'products',
         data: {
-          name: snack.name,
-          description: snack.description,
-          price: snack.price,
-          category: snack.category,
-          available: snack.available,
-          imageUrl: snack.imageUrl,
+          name: product.name,
+          description: product.description,
+          price: product.price,
+          category: product.category,
+          available: product.available,
+          imageUrl: product.imageUrl,
         },
         req,
       })
     })
 
-    const createdSnacks = await Promise.all(snackPromises)
+    const createdProducts = await Promise.all(productPromises)
 
     payload.logger.info(
-      `Successfully created ${createdSnacks.length} snacks with placeholder images`,
+      `Successfully created ${createdProducts.length} products with placeholder images`,
     )
   } catch (error) {
     payload.logger.error('Error running seed migration:', error)

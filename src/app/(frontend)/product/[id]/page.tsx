@@ -9,25 +9,25 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
 
-async function getSnack(id: string, payload: any) {
-  const snack = await payload.findByID({
-    collection: 'snacks',
+async function getProduct(id: string, payload: any) {
+  const product = await payload.findByID({
+    collection: 'products',
     id,
     depth: 2,
   })
-  return snack
+  return product
 }
 
-export default async function SnackPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const headers = await getHeaders()
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })
   const { user } = await payload.auth({ headers })
 
-  const snack = await getSnack(id, payload)
+  const product = await getProduct(id, payload)
 
-  if (!snack) {
+  if (!product) {
     return notFound()
   }
 
@@ -36,18 +36,18 @@ export default async function SnackPage({ params }: { params: Promise<{ id: stri
       <main className="w-full max-w-7xl mx-auto px-4 py-8">
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
           <div>
-            {((snack.image && typeof snack.image === 'object') || snack.imageUrl) && (
+            {((product.image && typeof product.image === 'object') || product.imageUrl) && (
               <div className="aspect-square relative rounded-lg overflow-hidden border">
                 <Image
                   src={
-                    snack.image && typeof snack.image === 'object'
-                      ? snack.image.url
-                      : snack.imageUrl
+                    product.image && typeof product.image === 'object'
+                      ? product.image.url
+                      : product.imageUrl
                   }
                   alt={
-                    (snack.image && typeof snack.image === 'object'
-                      ? snack.image.alt
-                      : undefined) || snack.name
+                    (product.image && typeof product.image === 'object'
+                      ? product.image.alt
+                      : undefined) || product.name
                   }
                   fill
                   className="object-cover"
@@ -56,17 +56,17 @@ export default async function SnackPage({ params }: { params: Promise<{ id: stri
             )}
           </div>
           <div className="flex flex-col justify-center">
-            <h1 className="text-4xl font-bold text-gray-900">{snack.name}</h1>
+            <h1 className="text-4xl font-bold text-gray-900">{product.name}</h1>
             <div className="flex items-center gap-2 mt-2">
-              <Badge variant="secondary">{snack.category}</Badge>
+              <Badge variant="secondary">{product.category}</Badge>
             </div>
-            <p className="text-lg text-gray-700 mt-4">{snack.description}</p>
+            <p className="text-lg text-gray-700 mt-4">{product.description}</p>
             <div className="mt-6">
-              <span className="text-4xl font-bold text-green-600">${snack.price.toFixed(2)}</span>
+              <span className="text-4xl font-bold text-green-600">${product.price.toFixed(2)}</span>
             </div>
             <div className="mt-8">
               {user ? (
-                <AddToCartButton snack={snack} />
+                <AddToCartButton product={product} />
               ) : (
                 <Button asChild>
                   <Link href="/login">Login to Order</Link>
@@ -75,7 +75,7 @@ export default async function SnackPage({ params }: { params: Promise<{ id: stri
             </div>
             <div className="mt-4">
               <Button asChild variant="link">
-                <Link href="/"> &larr; Back to all snacks</Link>
+                <Link href="/"> &larr; Back to all products</Link>
               </Button>
             </div>
           </div>
