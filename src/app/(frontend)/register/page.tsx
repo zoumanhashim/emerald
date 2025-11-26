@@ -34,6 +34,7 @@ export default function RegisterPage() {
     setIsSubmitting(true)
     setError('')
 
+    // Basic validation
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.password) {
       setError('All fields are required')
       setIsSubmitting(false)
@@ -68,6 +69,7 @@ export default function RegisterPage() {
       })
 
       if (response.ok) {
+        // Registration successful, redirect to login
         router.push('/login?message=Registration successful! Please log in.')
       } else {
         const errorData = await response.json()
@@ -87,20 +89,24 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center py-12 px-4">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
       <div className="max-w-md w-full space-y-8">
         <SiteHeader
           title="Create your account"
           subtitle={
             <>
               Already have an account?{' '}
-              <Link href="/login" className="font-medium text-primary hover:text-primary/90">
+              <Link
+                href="/login"
+                className="font-medium text-yellow-300 hover:text-yellow-400"
+              >
                 Sign in
               </Link>
             </>
           }
         />
 
+        {/* Registration Form */}
         <Card>
           <CardHeader>
             <CardTitle>Sign up</CardTitle>
@@ -116,7 +122,7 @@ export default function RegisterPage() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label htmlFor="firstName" className="text-sm font-medium">
+                  <label htmlFor="firstName" className="text-sm font-medium text-gray-700">
                     First Name
                   </label>
                   <Input
@@ -130,7 +136,7 @@ export default function RegisterPage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="lastName" className="text-sm font-medium">
+                  <label htmlFor="lastName" className="text-sm font-medium text-gray-700">
                     Last Name
                   </label>
                   <Input
@@ -146,7 +152,7 @@ export default function RegisterPage() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium">
+                <label htmlFor="email" className="text-sm font-medium text-gray-700">
                   Email address
                 </label>
                 <Input
@@ -161,7 +167,7 @@ export default function RegisterPage() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="password" className="text-sm font-medium">
+                <label htmlFor="password" className="text-sm font-medium text-gray-700">
                   Password
                 </label>
                 <Input
@@ -176,7 +182,7 @@ export default function RegisterPage() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="confirmPassword" className="text-sm font-medium">
+                <label htmlFor="confirmPassword" className="text-sm font-medium text-gray-700">
                   Confirm Password
                 </label>
                 <Input
@@ -190,16 +196,19 @@ export default function RegisterPage() {
                 />
               </div>
 
-              <Button
-                type="submit"
-                className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90"
-                disabled={isSubmitting}
-              >
+              <Button type="submit" className="w-full" disabled={isSubmitting}>
                 {isSubmitting ? 'Creating account...' : 'Create account'}
               </Button>
             </form>
           </CardContent>
         </Card>
+
+        {/* Back to Home */}
+        <div className="text-center">
+          <Link href="/" className="text-sm text-gray-600 hover:text-gray-900">
+            ← Back to home
+          </Link>
+        </div>
       </div>
     </div>
   )

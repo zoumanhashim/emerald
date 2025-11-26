@@ -25,30 +25,30 @@ export async function POST(request: NextRequest) {
     let computedTotal = 0
     for (const item of items) {
       const quantity = Number(item?.quantity)
-      const emeraldId = item?.snack // The cart context still uses 'snack' as the key for the item ID.
+      const snackId = item?.snack
 
       if (
-        !emeraldId ||
+        !snackId ||
         !Number.isFinite(quantity) ||
         !Number.isInteger(quantity) ||
         quantity <= 0 ||
         quantity > 100
       ) {
-        return NextResponse.json({ error: 'Invalid item quantity or emerald id' }, { status: 400 })
+        return NextResponse.json({ error: 'Invalid item quantity or snack id' }, { status: 400 })
       }
 
-      const emerald = await payload.findByID({
-        collection: 'emeralds',
-        id: emeraldId,
+      const snack = await payload.findByID({
+        collection: 'snacks',
+        id: snackId,
       })
 
-      if (!emerald || !emerald.available) {
-        return NextResponse.json({ error: `Emerald ${emeraldId} is not available` }, { status: 400 })
+      if (!snack || !snack.available) {
+        return NextResponse.json({ error: `Snack ${snackId} is not available` }, { status: 400 })
       }
 
-      const price = Number(emerald.price)
+      const price = Number(snack.price)
       if (!Number.isFinite(price) || price < 0) {
-        return NextResponse.json({ error: `Invalid price for emerald ${emeraldId}` }, { status: 400 })
+        return NextResponse.json({ error: `Invalid price for snack ${snackId}` }, { status: 400 })
       }
 
       computedTotal += price * quantity
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
       collection: 'orders',
       data: {
         user: user.id,
-        items: items.map((item: any) => ({ snack: item.snack, quantity: item.quantity })),
+        items,
         totalAmount: computedTotal,
         status: 'pending',
         orderDate: new Date().toISOString(),

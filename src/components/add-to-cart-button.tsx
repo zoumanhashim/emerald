@@ -1,8 +1,11 @@
 'use client'
 
 import React, { useState } from 'react'
+import { Plus } from 'lucide-react'
+
 import { useCart } from '@/lib/cart-context'
 import { Button } from '@/components/ui/button'
+import type { CartItem } from '@/lib/cart-context'
 
 interface AddToCartButtonProps {
   snack: {
@@ -17,17 +20,17 @@ interface AddToCartButtonProps {
   }
 }
 
-export const AddToCartButton: React.FC<AddToCartButtonProps> = ({ snack: emerald }) => {
+export const AddToCartButton: React.FC<AddToCartButtonProps> = ({ snack }) => {
   const { addItem, openCart } = useCart()
   const [isAdded, setIsAdded] = useState(false)
 
   const handleAddToCart = () => {
     addItem({
-      id: emerald.id,
-      name: emerald.name,
-      price: emerald.price,
-      category: emerald.category,
-      image: emerald.image,
+      id: snack.id,
+      name: snack.name,
+      price: snack.price,
+      category: snack.category,
+      image: snack.image,
     })
 
     setIsAdded(true)
@@ -41,14 +44,20 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({ snack: emerald
     }, 300)
   }
 
+  const addedClass =
+    'bg-stone-600 text-stone-300 border-2 border-t-stone-800 border-l-stone-800 border-b-stone-500 border-r-stone-500'
+  const defaultClass =
+    'bg-green-600 text-white border-2 border-t-green-500 border-l-green-500 border-b-green-800 border-r-green-800 hover:bg-green-700 active:border-t-green-800 active:border-l-green-800 active:border-b-green-500 active:border-r-green-500'
+
   return (
     <Button
       onClick={handleAddToCart}
       disabled={isAdded}
-      className="w-full py-3 text-base transition-all duration-200 bg-secondary text-secondary-foreground hover:bg-secondary/90"
-      size="lg"
+      className={`w-full py-3 text-base rounded-none transition-all duration-200 ${
+        isAdded ? addedClass : defaultClass
+      }`}
     >
-      {isAdded ? 'Added to Basket' : 'Add to Basket'}
+      {isAdded ? 'Added!' : 'Add to Cart'}
     </Button>
   )
 }

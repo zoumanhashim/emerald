@@ -7,6 +7,8 @@ import Image from 'next/image'
 
 import { useCart } from '@/lib/cart-context'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 
@@ -24,7 +26,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ user }) => {
     e.preventDefault()
 
     if (state.items.length === 0) {
-      setError('Your basket is empty')
+      setError('Your cart is empty')
       return
     }
 
@@ -39,7 +41,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ user }) => {
         },
         body: JSON.stringify({
           items: state.items.map((item) => ({
-            snack: item.id, // 'snack' is the field name in the Orders collection
+            snack: item.id,
             quantity: item.quantity,
           })),
           totalAmount: getTotalPrice(),
@@ -64,8 +66,8 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ user }) => {
   if (state.items.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-muted-foreground mb-6">Your basket is empty</p>
-        <Button asChild variant="outline">
+        <p className="text-gray-600 mb-6">Your cart is empty</p>
+        <Button asChild className="bg-black hover:bg-gray-800 text-white border-0 text-sm font-light tracking-wider px-8 py-3">
           <Link href="/">CONTINUE SHOPPING</Link>
         </Button>
       </div>
@@ -76,12 +78,12 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ user }) => {
     <form onSubmit={handleSubmit} className="space-y-8">
       {/* Order Summary */}
       <div>
-        <h3 className="text-2xl font-bold mb-6">Order Summary</h3>
+        <h3 className="text-2xl font-light text-black mb-6">Order Summary</h3>
         <div className="space-y-6">
           {state.items.map((item) => (
-            <div key={item.id} className="flex gap-6 p-4 border border-border rounded-lg">
+            <div key={item.id} className="flex gap-6 p-4 border border-gray-200">
               {item.image && (
-                <div className="relative w-24 h-24 rounded-md overflow-hidden flex-shrink-0 bg-muted/50">
+                <div className="relative w-20 h-24 rounded-md overflow-hidden flex-shrink-0 bg-gray-50">
                   <Image
                     src={item.image.url}
                     alt={item.image.alt || item.name}
@@ -91,12 +93,15 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ user }) => {
                 </div>
               )}
               <div className="flex-1 space-y-2">
-                <h4 className="font-semibold text-lg">{item.name}</h4>
+                <h4 className="font-light text-black text-lg">{item.name}</h4>
+                <Badge variant="secondary" className="text-xs bg-gray-100 text-gray-600">
+                  {item.category}
+                </Badge>
                 <div className="flex justify-between items-center">
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-gray-600">
                     ${item.price.toFixed(2)} × {item.quantity}
                   </p>
-                  <p className="text-lg font-medium text-primary">
+                  <p className="text-lg font-medium text-black">
                     ${(item.price * item.quantity).toFixed(2)}
                   </p>
                 </div>
@@ -106,18 +111,18 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ user }) => {
         </div>
       </div>
 
-      <Separator />
+      <Separator className="bg-gray-200" />
 
       {/* Total */}
-      <div className="flex justify-between items-center text-xl font-semibold">
-        <span>Total:</span>
-        <span className="text-primary">${getTotalPrice().toFixed(2)}</span>
+      <div className="flex justify-between items-center text-xl font-light">
+        <span className="text-black">Total:</span>
+        <span className="text-black">${getTotalPrice().toFixed(2)}</span>
       </div>
 
       {/* Error Message */}
       {error && (
-        <Alert variant="destructive">
-          <AlertDescription>{error}</AlertDescription>
+        <Alert variant="destructive" className="border-red-200 bg-red-50">
+          <AlertDescription className="text-red-800">{error}</AlertDescription>
         </Alert>
       )}
 
@@ -126,17 +131,14 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ user }) => {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90"
-          size="lg"
+          className="w-full bg-black hover:bg-gray-800 text-white border-0 py-4 text-sm font-light tracking-wider"
         >
-          {isSubmitting ? 'Placing Order...' : 'Complete Order'}
+          {isSubmitting ? 'PROCESSING...' : 'COMPLETE ORDER'}
         </Button>
       </div>
 
-      <div className="text-sm text-muted-foreground text-center space-y-2">
-        <p>
-          Order will be placed for: {user.firstName} {user.lastName}
-        </p>
+      <div className="text-sm text-gray-500 text-center space-y-2">
+        <p>Order will be placed for: {user.firstName} {user.lastName}</p>
         <p>Email: {user.email}</p>
       </div>
     </form>

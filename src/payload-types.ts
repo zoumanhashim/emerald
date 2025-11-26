@@ -69,7 +69,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    emeralds: Emerald;
+    snacks: Snack;
     orders: Order;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -79,7 +79,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    emeralds: EmeraldsSelect<false> | EmeraldsSelect<true>;
+    snacks: SnacksSelect<false> | SnacksSelect<true>;
     orders: OrdersSelect<false> | OrdersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -165,28 +165,20 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "emeralds".
+ * via the `definition` "snacks".
  */
-export interface Emerald {
+export interface Snack {
   id: number;
   name: string;
   description: string;
   price: number;
   image?: (number | null) | Media;
   /**
-   * For seeding purposes. Use the Image upload field for actual products.
+   * Use this for placeholder images or external image URLs. Either image or imageUrl should be provided.
    */
   imageUrl?: string | null;
-  category: 'rough' | 'cut' | 'specimen';
-  details: {
-    caratWeight: number;
-    dimensions: string;
-    clarity: string;
-    color: string;
-    origin: string;
-    certification?: string | null;
-  };
   available?: boolean | null;
+  category: 'tops' | 'bottoms' | 'outerwear' | 'shoes' | 'accessories';
   updatedAt: string;
   createdAt: string;
 }
@@ -198,7 +190,7 @@ export interface Order {
   id: number;
   user: number | User;
   items: {
-    snack: number | Emerald;
+    snack: number | Snack;
     quantity: number;
     id?: string | null;
   }[];
@@ -224,8 +216,8 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
-        relationTo: 'emeralds';
-        value: number | Emerald;
+        relationTo: 'snacks';
+        value: number | Snack;
       } | null)
     | ({
         relationTo: 'orders';
@@ -318,26 +310,16 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "emeralds_select".
+ * via the `definition` "snacks_select".
  */
-export interface EmeraldsSelect<T extends boolean = true> {
+export interface SnacksSelect<T extends boolean = true> {
   name?: T;
   description?: T;
   price?: T;
   image?: T;
   imageUrl?: T;
-  category?: T;
-  details?:
-    | T
-    | {
-        caratWeight?: T;
-        dimensions?: T;
-        clarity?: T;
-        color?: T;
-        origin?: T;
-        certification?: T;
-      };
   available?: T;
+  category?: T;
   updatedAt?: T;
   createdAt?: T;
 }
