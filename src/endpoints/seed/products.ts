@@ -6,7 +6,7 @@ export const productSeedData = [
     price: 2064.0,
     category: 'emerald' as const,
     available: true,
-    imageUrl: 'https://picsum.photos/400/400?random=1',
+    imageUrl: 'https://via.placeholder.com/400x400/4CAF50/FFFFFF?text=Panjshir+Emerald+1.72ct',
   },
   {
     name: 'Panjshir Emerald 2.26 Carat',
@@ -15,7 +15,7 @@ export const productSeedData = [
     price: 3277.0,
     category: 'emerald' as const,
     available: true,
-    imageUrl: 'https://picsum.photos/400/400?random=2',
+    imageUrl: 'https://via.placeholder.com/400x400/4CAF50/FFFFFF?text=Panjshir+Emerald+2.26ct',
   },
   {
     name: 'Panjshir Emerald 3.01 Carat',
@@ -24,7 +24,7 @@ export const productSeedData = [
     price: 5418.0,
     category: 'emerald' as const,
     available: true,
-    imageUrl: 'https://picsum.photos/400/400?random=3',
+    imageUrl: 'https://via.placeholder.com/400x400/4CAF50/FFFFFF?text=Panjshir+Emerald+3.01ct',
   },
   {
     name: 'Panjshir Emerald 1.21 Carat',
@@ -33,7 +33,7 @@ export const productSeedData = [
     price: 1210.0,
     category: 'emerald' as const,
     available: true,
-    imageUrl: 'https://picsum.photos/400/400?random=4',
+    imageUrl: 'https://via.placeholder.com/400x400/4CAF50/FFFFFF?text=Panjshir+Emerald+1.21ct',
   },
   {
     name: 'Panjshir Emerald 2.53 Carat',
@@ -42,7 +42,7 @@ export const productSeedData = [
     price: 4554.0,
     category: 'emerald' as const,
     available: true,
-    imageUrl: 'https://picsum.photos/400/400?random=5',
+    imageUrl: 'https://via.placeholder.com/400x400/4CAF50/FFFFFF?text=Panjshir+Emerald+2.53ct',
   },
   {
     name: 'Panjshir Emerald 1.51 Carat',
@@ -50,6 +50,6 @@ export const productSeedData = [
     price: 1812.0,
     category: 'emerald' as const,
     available: true,
-    imageUrl: 'https://picsum.photos/400/400?random=6',
+    imageUrl: 'https://via.placeholder.com/400x400/4CAF50/FFFFFF?text=Panjshir+Emerald+1.51ct',
   },
 ]
