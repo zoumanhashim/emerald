@@ -69,7 +69,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    snacks: Snack;
+    products: Product;
     orders: Order;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -79,7 +79,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    snacks: SnacksSelect<false> | SnacksSelect<true>;
+    products: ProductsSelect<false> | ProductsSelect<true>;
     orders: OrdersSelect<false> | OrdersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -165,9 +165,9 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "snacks".
+ * via the `definition` "products".
  */
-export interface Snack {
+export interface Product {
   id: number;
   name: string;
   description: string;
@@ -178,7 +178,7 @@ export interface Snack {
    */
   imageUrl?: string | null;
   available?: boolean | null;
-  category: 'tops' | 'bottoms' | 'outerwear' | 'shoes' | 'accessories';
+  category: 'emerald' | 'ruby' | 'sapphire' | 'diamond' | 'other';
   updatedAt: string;
   createdAt: string;
 }
@@ -190,7 +190,7 @@ export interface Order {
   id: number;
   user: number | User;
   items: {
-    snack: number | Snack;
+    product: number | Product;
     quantity: number;
     id?: string | null;
   }[];
@@ -216,8 +216,8 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
-        relationTo: 'snacks';
-        value: number | Snack;
+        relationTo: 'products';
+        value: number | Product;
       } | null)
     | ({
         relationTo: 'orders';
@@ -310,9 +310,9 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "snacks_select".
+ * via the `definition` "products_select".
  */
-export interface SnacksSelect<T extends boolean = true> {
+export interface ProductsSelect<T extends boolean = true> {
   name?: T;
   description?: T;
   price?: T;
@@ -332,7 +332,7 @@ export interface OrdersSelect<T extends boolean = true> {
   items?:
     | T
     | {
-        snack?: T;
+        product?: T;
         quantity?: T;
         id?: T;
       };

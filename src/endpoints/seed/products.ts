@@ -6,7 +6,7 @@ export const productSeedData = [
     price: 2064.0,
     category: 'emerald' as const,
     available: true,
-    imageUrl: 'https://www.gempundit.com/media/images/product/1-72-carat-panjshir-emerald-GP21134-A.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=400&fit=crop',
   },
   {
     name: 'Panjshir Emerald 2.26 Carat',
@@ -15,7 +15,7 @@ export const productSeedData = [
     price: 3277.0,
     category: 'emerald' as const,
     available: true,
-    imageUrl: 'https://www.gempundit.com/media/images/product/2-26-carat-panjshir-emerald-GP21133-A.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&h=400&fit=crop',
   },
   {
     name: 'Panjshir Emerald 3.01 Carat',
@@ -24,7 +24,7 @@ export const productSeedData = [
     price: 5418.0,
     category: 'emerald' as const,
     available: true,
-    imageUrl: 'https://www.gempundit.com/media/images/product/3-01-carat-panjshir-emerald-GP21132-A.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=400&fit=crop',
   },
   {
     name: 'Panjshir Emerald 1.21 Carat',
@@ -33,7 +33,7 @@ export const productSeedData = [
     price: 1210.0,
     category: 'emerald' as const,
     available: true,
-    imageUrl: 'https://www.gempundit.com/media/images/product/1-21-carat-panjshir-emerald-GP21135-A.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&h=400&fit=crop',
   },
   {
     name: 'Panjshir Emerald 2.53 Carat',
@@ -42,7 +42,7 @@ export const productSeedData = [
     price: 4554.0,
     category: 'emerald' as const,
     available: true,
-    imageUrl: 'https://www.gempundit.com/media/images/product/2-53-carat-panjshir-emerald-GP20909-A.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=400&fit=crop',
   },
   {
     name: 'Panjshir Emerald 1.51 Carat',
@@ -50,6 +50,6 @@ export const productSeedData = [
     price: 1812.0,
     category: 'emerald' as const,
     available: true,
-    imageUrl: 'https://www.gempundit.com/media/images/product/1-51-carat-panjshir-emerald-GP20910-A.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=400&fit=crop',
   },
 ]
