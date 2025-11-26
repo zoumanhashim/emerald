@@ -62,7 +62,14 @@ export default async function HomePage() {
                   <Dialog key={item.id}>
                     <DialogTrigger asChild>
                       <div className="group cursor-pointer text-center">
-                        <div className="bg-black/30 border-2 border-t-stone-600 border-l-stone-600 border-b-stone-900 border-r-stone-900 p-2 aspect-square flex items-center justify-center transition-colors duration-200 hover:bg-white/10">
+                        <div
+                          className="bg-black/30 border-2 border-t-stone-600 border-l-stone-600 border-b-stone-900 border-r-stone-900 p-2 aspect-square flex items-center justify-center transition-colors duration-200 hover:bg-white/10"
+                          style={{
+                            backgroundImage: `url('/item-background.png')`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                          }}
+                        >
                           <div className="relative w-full h-full">
                             {((item.image && typeof item.image === 'object') ||
                               item.imageUrl) && (
@@ -78,7 +85,7 @@ export default async function HomePage() {
                                     : undefined) || item.name
                                 }
                                 fill
-                                className="object-cover"
+                                className="object-contain"
                                 style={{ imageRendering: 'pixelated' }}
                               />
                             )}
