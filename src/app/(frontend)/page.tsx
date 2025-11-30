@@ -109,8 +109,13 @@ export default async function HomePage() {
         </section>
 
         {/* Pricing Section */}
-        <section id="pricing" className="bg-gray-50 py-16 md:py-24">
-          <div className="w-full max-w-7xl mx-auto px-4">
+        <section
+          id="pricing"
+          className="relative py-16 md:py-24 bg-cover bg-center"
+          style={{ backgroundImage: "url('/pricing-background.png')" }}
+        >
+          <div className="absolute inset-0 bg-background/80 z-0" />
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold">Transparent Pricing</h2>
               <p className="mt-4 text-muted-foreground">
@@ -118,7 +123,7 @@ export default async function HomePage() {
               </p>
             </div>
             <div className="flex justify-center">
-              <Card className="max-w-md w-full border-primary">
+              <Card className="max-w-md w-full border-primary bg-card/80 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle>All-Inclusive Package</CardTitle>
                   <CardDescription className="text-4xl font-bold pt-4">
