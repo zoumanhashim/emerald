@@ -34,9 +34,10 @@ export default async function HomePage() {
           <div className="w-full max-w-7xl mx-auto px-4 py-16 md:py-24">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="text-center md:text-left">
-                <h1 className="text-4xl md:text-6xl font-bold">
-                  We customize premium hoodies with your brand's logo and deliver them directly to people experiencing homelessness in the city you choose. You receive photos and videos of the distribution, showcasing your brand's commitment to making a real difference in the community.
-                </h1>
+                <h1 className="text-4xl md:text-6xl font-bold">Hoodie Jihad</h1>
+                <p className="mt-6 text-lg text-muted-foreground">
+                  We customize premium hoodies with your brand's logo and deliver them directly to people experiencing homelessness in the Indian city you choose, helping them stay warm through harsh winters.
+                </p>
                 <p className="mt-4 text-sm text-muted-foreground">
                   Only India metro cities
                 </p>
