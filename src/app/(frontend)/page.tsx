@@ -1,5 +1,6 @@
 import { headers as getHeaders } from 'next/headers.js'
 import Link from 'next/link'
+import Image from 'next/image'
 import { getPayload } from 'payload'
 import React from 'react'
 import { Camera, MapPin, Upload } from 'lucide-react'
@@ -21,18 +22,32 @@ export default async function HomePage() {
 
       <main>
         {/* Hero Section */}
-        <section className="bg-gray-50 py-20 md:py-32">
-          <div className="w-full max-w-7xl mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold">Those Who Struggle</h1>
-            <p className="mt-6 text-lg text-muted-foreground max-w-3xl mx-auto">
-              We print your logo on high-quality hoodies and distribute them to the homeless in a
-              city of your choice. You get media of the distribution, creating a powerful story for
-              your brand.
-            </p>
-            <div className="mt-10">
-              <Button asChild size="lg">
-                <Link href="/start-campaign">Start Your Campaign</Link>
-              </Button>
+        <section className="bg-gray-50 pt-20">
+          <div className="w-full max-w-7xl mx-auto px-4 py-16 md:py-24">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="text-center md:text-left">
+                <h1 className="text-4xl md:text-6xl font-bold">Those Who Struggle</h1>
+                <p className="mt-6 text-lg text-muted-foreground">
+                  We print your logo on high-quality hoodies and distribute them to the homeless in a
+                  city of your choice. You get media of the distribution, creating a powerful story
+                  for your brand.
+                </p>
+                <div className="mt-10">
+                  <Button asChild size="lg">
+                    <Link href="/start-campaign">Start Your Campaign</Link>
+                  </Button>
+                </div>
+              </div>
+              <div>
+                <Image
+                  src="/hoodie-mockup.jpg"
+                  alt="Hoodie with 'your ad here' text"
+                  width={1200}
+                  height={800}
+                  className="rounded-lg shadow-lg"
+                  priority
+                />
+              </div>
             </div>
           </div>
         </section>
