@@ -51,12 +51,12 @@ export function CampaignForm() {
       contactEmail: '',
       contactPhone: '',
       city: '',
-      quantity: 50, // A sensible default
+      quantity: 10, // A sensible default
       message: '',
     },
   })
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>>) => {
     setIsSubmitting(true)
     setError('')
 

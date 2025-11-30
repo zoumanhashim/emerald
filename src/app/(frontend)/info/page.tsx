@@ -17,7 +17,7 @@ export default function InfoPage() {
     {
       question: 'What is the minimum order quantity?',
       answer:
-        'The minimum order to start a campaign is 50 hoodies. This ensures we can make a meaningful impact in the chosen distribution area.',
+        'The minimum order to start a campaign is 10 hoodies. This allows us to make a meaningful impact in the chosen distribution area.',
     },
     {
       question: 'Can I choose a specific area within a city for distribution?',
@@ -27,7 +27,7 @@ export default function InfoPage() {
     {
       question: 'What kind of media will I receive?',
       answer:
-        'You will receive a collection of high-resolution photos and short video clips from the distribution event. This media is perfect for sharing on your social channels, website, and internal communications to showcase your brand\'s social responsibility.',
+        "You will receive a collection of high-resolution photos and short video clips from the distribution event. This media is perfect for sharing on your social channels, website, and internal communications to showcase your brand's social responsibility.",
     },
     {
       question: 'How long does the entire process take?',
