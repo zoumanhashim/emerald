@@ -36,15 +36,11 @@ export default async function HomePage() {
               <div className="text-center md:text-left">
                 <h1 className="text-4xl md:text-6xl font-bold">Those Who Struggle</h1>
                 <p className="mt-6 text-lg text-muted-foreground">
-                  We print your logo on high-quality hoodies and distribute them to the homeless in a
-                  city of your choice. You get media of the distribution, creating a powerful story
-                  for your brand.
+                  We customize premium hoodies with your brand's logo and deliver them directly to people experiencing homelessness in the city you choose. You receive photos and videos of the distribution, showcasing your brand's commitment to making a real difference in the community.
                 </p>
-                <div className="mt-10">
-                  <Button asChild size="lg">
-                    <Link href="/start-campaign">Start Your Campaign</Link>
-                  </Button>
-                </div>
+                <p className="mt-4 text-sm text-muted-foreground">
+                  Only India metro cities
+                </p>
               </div>
               <div>
                 <Image
