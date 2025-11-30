@@ -31,7 +31,7 @@ export default async function HomePage() {
             </p>
             <div className="mt-10">
               <Button asChild size="lg">
-                <Link href="#pricing">Start Your Campaign</Link>
+                <Link href="/start-campaign">Start Your Campaign</Link>
               </Button>
             </div>
           </div>
@@ -123,7 +123,7 @@ export default async function HomePage() {
                     </li>
                   </ul>
                   <Button asChild className="w-full">
-                    <Link href="#contact">Start Now</Link>
+                    <Link href="/start-campaign">Start Now</Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -141,7 +141,7 @@ export default async function HomePage() {
             </p>
             <div className="mt-8">
               <Button asChild size="lg">
-                <a href="mailto:sales@example.com?subject=Hoodie Campaign Inquiry">Contact Us</a>
+                <Link href="/start-campaign">Contact Us</Link>
               </Button>
             </div>
           </div>

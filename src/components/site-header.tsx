@@ -57,7 +57,7 @@ export function SiteHeader({
               </Button>
             )}
             <Button asChild>
-              <Link href="#contact">Start a Campaign</Link>
+              <Link href="/start-campaign">Start a Campaign</Link>
             </Button>
           </div>
         </div>
