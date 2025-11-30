@@ -20,6 +20,24 @@ export default function InfoPage() {
         'The minimum order to start a campaign is 10 hoodies. This allows us to make a meaningful impact in the chosen distribution area.',
     },
     {
+      question: 'Where do you source your hoodies from?',
+      answer: (
+        <>
+          We source our high-quality, 430 GSM hoodies from a trusted supplier to ensure comfort and
+          durability. You can learn more about the raw products at{' '}
+          <a
+            href="https://www.bulkplaintshirt.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary hover:underline"
+          >
+            bulkplaintshirt.com
+          </a>
+          .
+        </>
+      ),
+    },
+    {
       question: 'Can I choose a specific area within a city for distribution?',
       answer:
         'While you choose the primary city, our on-ground teams select the specific areas with the most need to ensure the donations have the greatest impact. We focus on shelters, railway stations, and areas with high concentrations of homeless individuals.',
