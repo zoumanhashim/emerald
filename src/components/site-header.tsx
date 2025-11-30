@@ -24,7 +24,7 @@ export function SiteHeader({
       >
         <div className="w-full max-w-7xl mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link href="/" className="text-xl font-bold hover:text-primary transition-colors">
-            Brand for Good
+            Those Who Struggle
           </Link>
 
           {/* Navigation */}
@@ -69,7 +69,7 @@ export function SiteHeader({
   return (
     <div className={`text-center ${className}`}>
       <Link href="/" className="text-2xl font-bold hover:text-primary transition-colors">
-        Brand for Good
+        Those Who Struggle
       </Link>
       {title && <h2 className="mt-6 text-3xl font-bold text-foreground">{title}</h2>}
       {subtitle && <div className="mt-2 text-lg text-muted-foreground">{subtitle}</div>}

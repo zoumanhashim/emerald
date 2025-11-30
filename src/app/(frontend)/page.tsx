@@ -23,7 +23,7 @@ export default async function HomePage() {
         {/* Hero Section */}
         <section className="bg-gray-50 py-20 md:py-32">
           <div className="w-full max-w-7xl mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold">Warm a Heart, Build Your Brand.</h1>
+            <h1 className="text-4xl md:text-6xl font-bold">Those Who Struggle</h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-3xl mx-auto">
               We print your logo on high-quality hoodies and distribute them to the homeless in a
               city of your choice. You get media of the distribution, creating a powerful story for
@@ -150,7 +150,7 @@ export default async function HomePage() {
         {/* Footer */}
         <footer className="border-t">
           <div className="w-full max-w-7xl mx-auto px-4 py-8 text-center text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} Brand for Good. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Those Who Struggle. All rights reserved.</p>
           </div>
         </footer>
       </main>
