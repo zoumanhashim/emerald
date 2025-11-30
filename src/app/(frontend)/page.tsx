@@ -3,20 +3,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getPayload } from 'payload'
 import React from 'react'
+import { BarChart, Heart, Users } from 'lucide-react'
 
 import config from '@/payload.config'
 import { SiteHeader } from '@/components/site-header'
-import { AddToCartButton } from '@/components/add-to-cart-button'
 import { Button } from '@/components/ui/button'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog'
-import { Badge } from '@/components/ui/badge'
 
 export default async function HomePage() {
   const headers = await getHeaders()
@@ -24,135 +15,144 @@ export default async function HomePage() {
   const payload = await getPayload({ config: payloadConfig })
   const { user } = await payload.auth({ headers })
 
-  const products = await payload.find({
-    collection: 'products',
-    where: {
-      available: {
-        equals: true,
-      },
-    },
-    sort: 'createdAt',
-  })
-
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background text-foreground">
       <SiteHeader variant="full" user={user} />
 
-      <main className="pt-20">
+      <main>
         {/* Hero Section */}
-        <section className="py-20 md:py-32 text-center">
-          <div className="w-full max-w-7xl mx-auto px-4">
-            <h1 className="text-4xl md:text-6xl">those who strugle</h1>
-            <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Crafted by nature, perfected by time.
+        <section className="bg-gray-50 py-20 md:py-32">
+          <div className="w-full max-w-7xl mx-auto px-4 text-center">
+            <h1 className="text-4xl md:text-6xl font-bold">Sponsor Warm Hoodies</h1>
+            <p className="mt-6 text-lg text-muted-foreground max-w-3xl mx-auto">
+              This winter, many people in our city will sleep outside without proper warm clothing.
+              Join us to give high-quality hoodies directly to people living on the streets.
             </p>
+            <div className="mt-10">
+              <Button asChild size="lg">
+                <Link href="#contact">Become a Sponsor</Link>
+              </Button>
+            </div>
           </div>
         </section>
 
-        {/* Collection Section */}
-        <section id="collection" className="py-12 md:py-16">
+        {/* How It Works Section */}
+        <section id="how-it-works" className="py-16 md:py-24">
           <div className="w-full max-w-7xl mx-auto px-4">
-            {products.docs.length === 0 ? (
-              <div className="text-center py-20 border rounded-lg p-8">
-                <h2 className="text-2xl">No products available...</h2>
-                <p className="mt-4 text-muted-foreground">New items will be available soon!</p>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold">How It Works</h2>
+              <p className="mt-4 text-muted-foreground">
+                A simple, transparent process to make a direct impact.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8 text-center">
+              <div className="p-6 border rounded-lg">
+                <div className="flex justify-center mb-4">
+                  <div className="bg-primary/10 text-primary p-4 rounded-full">
+                    <Heart className="h-8 w-8" />
+                  </div>
+                </div>
+                <h3 className="text-xl font-semibold">1. You Sponsor</h3>
+                <p className="mt-2 text-muted-foreground">
+                  Your contribution covers the full cost of each hoodie, from fabric to
+                  distribution.
+                </p>
               </div>
-            ) : (
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {products.docs.map((item: any) => (
-                  <Dialog key={item.id}>
-                    <DialogTrigger asChild>
-                      <div className="group cursor-pointer overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-md">
-                        <div className="aspect-square bg-muted flex items-center justify-center p-4">
-                          <div className="relative w-full h-full">
-                            {((item.image && typeof item.image === 'object') ||
-                              item.imageUrl) && (
-                              <Image
-                                src={
-                                  item.image && typeof item.image === 'object'
-                                    ? item.image.url
-                                    : item.imageUrl
-                                }
-                                alt={
-                                  (item.image && typeof item.image === 'object'
-                                    ? item.image.alt
-                                    : undefined) || item.name
-                                }
-                                fill
-                                className="object-contain group-hover:scale-105 transition-transform duration-300"
-                              />
-                            )}
-                          </div>
-                        </div>
-                        <div className="p-4 border-t">
-                          <h3 className="font-semibold truncate">{item.name}</h3>
-                          <p className="text-lg font-bold text-primary">${item.price.toFixed(2)}</p>
-                        </div>
-                      </div>
-                    </DialogTrigger>
-
-                    <DialogContent className="bg-card max-w-4xl">
-                      <div className="grid md:grid-cols-2 gap-8 items-center">
-                        {/* Product Image */}
-                        <div className="relative aspect-square bg-muted rounded-lg">
-                          {((item.image && typeof item.image === 'object') ||
-                            item.imageUrl) && (
-                            <Image
-                              src={
-                                item.image && typeof item.image === 'object'
-                                  ? item.image.url
-                                  : item.imageUrl
-                              }
-                              alt={
-                                (item.image && typeof item.image === 'object'
-                                  ? item.image.alt
-                                  : undefined) || item.name
-                              }
-                              fill
-                              className="object-contain"
-                            />
-                          )}
-                        </div>
-
-                        {/* Product Details */}
-                        <div className="flex flex-col h-full py-6">
-                          <DialogHeader>
-                            <DialogTitle className="text-3xl">
-                              {item.name}
-                            </DialogTitle>
-                            <DialogDescription className="pt-1">
-                              <Badge>{item.category}</Badge>
-                            </DialogDescription>
-                          </DialogHeader>
-
-                          <p className="text-muted-foreground mt-4 leading-relaxed flex-grow">
-                            {item.description}
-                          </p>
-
-                          <div className="mt-6">
-                            <p className="text-4xl font-bold">
-                              ${item.price.toFixed(2)}
-                            </p>
-                          </div>
-
-                          <div className="mt-6">
-                            {user ? (
-                              <AddToCartButton product={item} />
-                            ) : (
-                              <Button asChild size="lg" className="w-full">
-                                <Link href="/login">Sign In to Purchase</Link>
-                              </Button>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    </DialogContent>
-                  </Dialog>
-                ))}
+              <div className="p-6 border rounded-lg">
+                <div className="flex justify-center mb-4">
+                  <div className="bg-primary/10 text-primary p-4 rounded-full">
+                    <Users className="h-8 w-8" />
+                  </div>
+                </div>
+                <h3 className="text-xl font-semibold">2. We Distribute</h3>
+                <p className="mt-2 text-muted-foreground">
+                  We give high-quality hoodies with your brand logo directly to people in need.
+                </p>
               </div>
-            )}
+              <div className="p-6 border rounded-lg">
+                <div className="flex justify-center mb-4">
+                  <div className="bg-primary/10 text-primary p-4 rounded-full">
+                    <BarChart className="h-8 w-8" />
+                  </div>
+                </div>
+                <h3 className="text-xl font-semibold">3. You See The Impact</h3>
+                <p className="mt-2 text-muted-foreground">
+                  Receive photo updates and a simple report showing your contribution at work.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
+
+        {/* Sponsorship Benefits Section */}
+        <section id="why-sponsor" className="bg-gray-50 py-16 md:py-24">
+          <div className="w-full max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold">Why Sponsor?</h2>
+              <p className="mt-4 text-muted-foreground">
+                In return for your support, your brand gets meaningful visibility while making a
+                real difference in the community.
+              </p>
+              <ul className="mt-6 space-y-4 text-muted-foreground">
+                <li className="flex items-start">
+                  <span className="text-primary mr-3 mt-1">✓</span>
+                  <span>
+                    <strong>Brand Feature:</strong> Your logo printed as "Supported by [Your
+                    Brand]" on every sponsored hoodie.
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-3 mt-1">✓</span>
+                  <span>
+                    <strong>Social Proof:</strong> Get tagged in photo/video updates from our
+                    distributions for your customers and team to see.
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-3 mt-1">✓</span>
+                  <span>
+                    <strong>Transparent Reporting:</strong> Receive a simple report with cost
+                    breakdowns and impact metrics.
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div className="relative aspect-square bg-muted rounded-lg overflow-hidden">
+              <Image
+                src="https://images.unsplash.com/photo-1610653289462-3554c537b33c?q=80&w=2070&auto=format&fit=crop"
+                alt="Person wearing a hoodie"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Contact/CTA Section */}
+        <section id="contact" className="py-16 md:py-24">
+          <div className="w-full max-w-3xl mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold">Ready to Make a Difference?</h2>
+            <p className="mt-4 text-muted-foreground">
+              Let's keep our community warm this winter. For around ₹500 per hoodie, you can
+              sponsor 100 hoodies and warm 100 people. Schedule a 10-minute call to discuss the
+              numbers and design options.
+            </p>
+            <div className="mt-8">
+              <Button asChild size="lg">
+                <a href="mailto:your-email@example.com?subject=Sponsorship Inquiry">
+                  Schedule a Call
+                </a>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="border-t">
+          <div className="w-full max-w-7xl mx-auto px-4 py-8 text-center text-muted-foreground">
+            <p>&copy; {new Date().getFullYear()} Hoodies for Warmth. A community project.</p>
+          </div>
+        </footer>
       </main>
     </div>
   )
