@@ -45,7 +45,7 @@ export default function InfoPage() {
     {
       question: 'What kind of media will I receive?',
       answer:
-        "You will receive a collection of high-resolution photos and short video clips from the distribution event. This media is perfect for sharing on your social channels, website, and internal communications to showcase your brand's social responsibility.",
+        'Your brand receives authentic photo and video proof of every distribution, highlighting your CSR commitment and the real impact your company is creating on the streets of India.',
     },
     {
       question: 'How long does the entire process take?',
