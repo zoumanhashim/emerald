@@ -1,13 +1,13 @@
 import { headers as getHeaders } from 'next/headers.js'
-import Image from 'next/image'
 import Link from 'next/link'
 import { getPayload } from 'payload'
 import React from 'react'
-import { BarChart, Heart, Users } from 'lucide-react'
+import { BarChart, Eye, Target } from 'lucide-react'
 
 import config from '@/payload.config'
 import { SiteHeader } from '@/components/site-header'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 export default async function HomePage() {
   const headers = await getHeaders()
@@ -23,50 +23,51 @@ export default async function HomePage() {
         {/* Hero Section */}
         <section className="bg-gray-50 py-20 md:py-32">
           <div className="w-full max-w-7xl mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold">Sponsor Warm Hoodies</h1>
+            <h1 className="text-4xl md:text-6xl font-bold">Connect With Your Audience</h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-3xl mx-auto">
-              This winter, many people in our city will sleep outside without proper warm clothing.
-              Join us to give high-quality hoodies directly to people living on the streets.
+              Place your brand in front of thousands of engaged users. We offer premium advertising
+              solutions tailored to your goals.
             </p>
             <div className="mt-10">
               <Button asChild size="lg">
-                <Link href="#contact">Become a Sponsor</Link>
+                <Link href="#packages">View Our Packages</Link>
               </Button>
             </div>
           </div>
         </section>
 
-        {/* How It Works Section */}
-        <section id="how-it-works" className="py-16 md:py-24">
+        {/* Why Us Section */}
+        <section id="why-us" className="py-16 md:py-24">
           <div className="w-full max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold">How It Works</h2>
+              <h2 className="text-3xl font-bold">Why Advertise With Us?</h2>
               <p className="mt-4 text-muted-foreground">
-                A simple, transparent process to make a direct impact.
+                We provide the platform you need to grow.
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-8 text-center">
               <div className="p-6 border rounded-lg">
                 <div className="flex justify-center mb-4">
                   <div className="bg-primary/10 text-primary p-4 rounded-full">
-                    <Heart className="h-8 w-8" />
+                    <Target className="h-8 w-8" />
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold">1. You Sponsor</h3>
+                <h3 className="text-xl font-semibold">Targeted Audience</h3>
                 <p className="mt-2 text-muted-foreground">
-                  Your contribution covers the full cost of each hoodie, from fabric to
-                  distribution.
+                  Reach a dedicated and engaged user base interested in high-quality content and
+                  products.
                 </p>
               </div>
               <div className="p-6 border rounded-lg">
                 <div className="flex justify-center mb-4">
                   <div className="bg-primary/10 text-primary p-4 rounded-full">
-                    <Users className="h-8 w-8" />
+                    <Eye className="h-8 w-8" />
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold">2. We Distribute</h3>
+                <h3 className="text-xl font-semibold">High Visibility</h3>
                 <p className="mt-2 text-muted-foreground">
-                  We give high-quality hoodies with your brand logo directly to people in need.
+                  Premium ad placements, including homepage banners and sponsored content, ensure
+                  your brand gets noticed.
                 </p>
               </div>
               <div className="p-6 border rounded-lg">
@@ -75,55 +76,98 @@ export default async function HomePage() {
                     <BarChart className="h-8 w-8" />
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold">3. You See The Impact</h3>
+                <h3 className="text-xl font-semibold">Measurable Results</h3>
                 <p className="mt-2 text-muted-foreground">
-                  Receive photo updates and a simple report showing your contribution at work.
+                  Track your campaign's performance with our detailed analytics and transparent
+                  reporting.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Sponsorship Benefits Section */}
-        <section id="why-sponsor" className="bg-gray-50 py-16 md:py-24">
-          <div className="w-full max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold">Why Sponsor?</h2>
+        {/* Packages Section */}
+        <section id="packages" className="bg-gray-50 py-16 md:py-24">
+          <div className="w-full max-w-7xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold">Our Advertising Packages</h2>
               <p className="mt-4 text-muted-foreground">
-                In return for your support, your brand gets meaningful visibility while making a
-                real difference in the community.
+                Choose the plan that's right for your budget and goals.
               </p>
-              <ul className="mt-6 space-y-4 text-muted-foreground">
-                <li className="flex items-start">
-                  <span className="text-primary mr-3 mt-1">✓</span>
-                  <span>
-                    <strong>Brand Feature:</strong> Your logo printed as "Supported by [Your
-                    Brand]" on every sponsored hoodie.
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-3 mt-1">✓</span>
-                  <span>
-                    <strong>Social Proof:</strong> Get tagged in photo/video updates from our
-                    distributions for your customers and team to see.
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-3 mt-1">✓</span>
-                  <span>
-                    <strong>Transparent Reporting:</strong> Receive a simple report with cost
-                    breakdowns and impact metrics.
-                  </span>
-                </li>
-              </ul>
             </div>
-            <div className="relative aspect-square bg-muted rounded-lg overflow-hidden">
-              <Image
-                src="https://images.unsplash.com/photo-1610653289462-3554c537b33c?q=80&w=2070&auto=format&fit=crop"
-                alt="Person wearing a hoodie"
-                fill
-                className="object-cover"
-              />
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Basic</CardTitle>
+                  <CardDescription>Perfect for getting started.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start">
+                      <span className="text-primary mr-3 mt-1">✓</span>Homepage Banner Ad
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary mr-3 mt-1">✓</span>Weekly Analytics Report
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary mr-3 mt-1">✓</span>Email Support
+                    </li>
+                  </ul>
+                  <Button asChild className="w-full">
+                    <Link href="#contact">Get Started</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+              <Card className="border-primary">
+                <CardHeader>
+                  <CardTitle>Pro</CardTitle>
+                  <CardDescription>For growing brands.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start">
+                      <span className="text-primary mr-3 mt-1">✓</span>Everything in Basic, plus:
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary mr-3 mt-1">✓</span>Sponsored Content Feature
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary mr-3 mt-1">✓</span>Social Media Shoutout
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary mr-3 mt-1">✓</span>Priority Support
+                    </li>
+                  </ul>
+                  <Button asChild className="w-full">
+                    <Link href="#contact">Get Started</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Enterprise</CardTitle>
+                  <CardDescription>Custom solutions for scale.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start">
+                      <span className="text-primary mr-3 mt-1">✓</span>Everything in Pro, plus:
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary mr-3 mt-1">✓</span>Custom API Integration
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary mr-3 mt-1">✓</span>Dedicated Account Manager
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary mr-3 mt-1">✓</span>Quarterly Strategy Call
+                    </li>
+                  </ul>
+                  <Button asChild className="w-full">
+                    <Link href="#contact">Contact Us</Link>
+                  </Button>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
@@ -131,16 +175,15 @@ export default async function HomePage() {
         {/* Contact/CTA Section */}
         <section id="contact" className="py-16 md:py-24">
           <div className="w-full max-w-3xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold">Ready to Make a Difference?</h2>
+            <h2 className="text-3xl font-bold">Ready to Grow Your Brand?</h2>
             <p className="mt-4 text-muted-foreground">
-              Let's keep our community warm this winter. For around ₹500 per hoodie, you can
-              sponsor 100 hoodies and warm 100 people. Schedule a 10-minute call to discuss the
-              numbers and design options.
+              Our team is ready to help you create a custom advertising campaign that delivers
+              results. Get in touch today to discuss your goals.
             </p>
             <div className="mt-8">
               <Button asChild size="lg">
-                <a href="mailto:your-email@example.com?subject=Sponsorship Inquiry">
-                  Schedule a Call
+                <a href="mailto:sales@example.com?subject=Advertising Inquiry">
+                  Contact Sales
                 </a>
               </Button>
             </div>
@@ -150,7 +193,7 @@ export default async function HomePage() {
         {/* Footer */}
         <footer className="border-t">
           <div className="w-full max-w-7xl mx-auto px-4 py-8 text-center text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} Hoodies for Warmth. A community project.</p>
+            <p>&copy; {new Date().getFullYear()} Your Brand Ads. All rights reserved.</p>
           </div>
         </footer>
       </main>

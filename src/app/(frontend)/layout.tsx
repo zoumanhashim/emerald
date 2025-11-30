@@ -2,8 +2,9 @@ import React from 'react'
 import '../globals.css'
 
 export const metadata = {
-  description: 'A sponsorship project to provide warm hoodies to people sleeping rough.',
-  title: 'Hoodies for Warmth',
+  description:
+    'Reach your target audience by advertising with us. We offer premium ad space to grow your brand.',
+  title: 'Your Brand Ads | Premium Advertising Space',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
