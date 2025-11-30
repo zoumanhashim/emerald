@@ -56,7 +56,7 @@ export function CampaignForm() {
     },
   })
 
-  const onSubmit = async (values: z.infer<typeof formSchema>>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true)
     setError('')
 
