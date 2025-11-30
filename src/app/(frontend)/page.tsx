@@ -152,15 +152,11 @@ export default async function HomePage() {
         {/* Contact/CTA Section */}
         <section id="contact" className="py-16 md:py-24">
           <div className="w-full max-w-3xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold">Ready to Make a Difference?</h2>
-            <p className="mt-4 text-muted-foreground">
-              Our team is ready to help you create a custom campaign that gives back to the
-              community. Get in touch today to discuss your goals.
-            </p>
-            <div className="mt-8">
-              <Button asChild size="lg">
-                <Link href="/start-campaign">Contact Us</Link>
-              </Button>
+            <h2 className="text-3xl font-bold">Contact Us</h2>
+            <div className="mt-4 space-y-2 text-muted-foreground">
+              <p>WhatsApp: +91 8400452650</p>
+              <p>Head Office: Lucknow, Uttar Pradesh</p>
+              <p>Operations: All over India</p>
             </div>
           </div>
         </section>
