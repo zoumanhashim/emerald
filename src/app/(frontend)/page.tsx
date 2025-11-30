@@ -14,7 +14,15 @@ export default async function HomePage() {
   const headers = await getHeaders()
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })
-  const { user } = await payload.auth({ headers })
+
+  let user = null
+  try {
+    const authResult = await payload.auth({ headers })
+    user = authResult.user
+  } catch (error) {
+    // Auth failed, user remains null - this is expected for unauthenticated users
+    console.log('Auth check failed:', error)
+  }
 
   return (
     <div className="min-h-screen bg-background text-foreground">
