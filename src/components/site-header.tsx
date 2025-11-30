@@ -24,22 +24,22 @@ export function SiteHeader({
       >
         <div className="w-full max-w-7xl mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link href="/" className="text-xl font-bold hover:text-primary transition-colors">
-            Your Brand Ads
+            Brand for Good
           </Link>
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center gap-6 text-sm">
             <Link
-              href="/#why-us"
+              href="/#how-it-works"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
-              Why Us?
+              How It Works
             </Link>
             <Link
-              href="/#packages"
+              href="/#pricing"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
-              Packages
+              Pricing
             </Link>
             <Link
               href="/#contact"
@@ -57,7 +57,7 @@ export function SiteHeader({
               </Button>
             )}
             <Button asChild>
-              <Link href="#contact">Advertise With Us</Link>
+              <Link href="#contact">Start a Campaign</Link>
             </Button>
           </div>
         </div>
@@ -69,7 +69,7 @@ export function SiteHeader({
   return (
     <div className={`text-center ${className}`}>
       <Link href="/" className="text-2xl font-bold hover:text-primary transition-colors">
-        Your Brand Ads
+        Brand for Good
       </Link>
       {title && <h2 className="mt-6 text-3xl font-bold text-foreground">{title}</h2>}
       {subtitle && <div className="mt-2 text-lg text-muted-foreground">{subtitle}</div>}

@@ -2,7 +2,7 @@ import { headers as getHeaders } from 'next/headers.js'
 import Link from 'next/link'
 import { getPayload } from 'payload'
 import React from 'react'
-import { BarChart, Eye, Target } from 'lucide-react'
+import { Camera, MapPin, Upload } from 'lucide-react'
 
 import config from '@/payload.config'
 import { SiteHeader } from '@/components/site-header'
@@ -23,148 +23,107 @@ export default async function HomePage() {
         {/* Hero Section */}
         <section className="bg-gray-50 py-20 md:py-32">
           <div className="w-full max-w-7xl mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold">Connect With Your Audience</h1>
+            <h1 className="text-4xl md:text-6xl font-bold">Warm a Heart, Build Your Brand.</h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-3xl mx-auto">
-              Place your brand in front of thousands of engaged users. We offer premium advertising
-              solutions tailored to your goals.
+              We print your logo on high-quality hoodies and distribute them to the homeless in a
+              city of your choice. You get media of the distribution, creating a powerful story for
+              your brand.
             </p>
             <div className="mt-10">
               <Button asChild size="lg">
-                <Link href="#packages">View Our Packages</Link>
+                <Link href="#pricing">Start Your Campaign</Link>
               </Button>
             </div>
           </div>
         </section>
 
-        {/* Why Us Section */}
-        <section id="why-us" className="py-16 md:py-24">
+        {/* How It Works Section */}
+        <section id="how-it-works" className="py-16 md:py-24">
           <div className="w-full max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold">Why Advertise With Us?</h2>
+              <h2 className="text-3xl font-bold">A Simple, Transparent Process</h2>
               <p className="mt-4 text-muted-foreground">
-                We provide the platform you need to grow.
+                Making a difference has never been easier.
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-8 text-center">
               <div className="p-6 border rounded-lg">
                 <div className="flex justify-center mb-4">
                   <div className="bg-primary/10 text-primary p-4 rounded-full">
-                    <Target className="h-8 w-8" />
+                    <MapPin className="h-8 w-8" />
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold">Targeted Audience</h3>
+                <h3 className="text-xl font-semibold">Choose City & Quantity</h3>
                 <p className="mt-2 text-muted-foreground">
-                  Reach a dedicated and engaged user base interested in high-quality content and
-                  products.
+                  Select where you want to make an impact and how many hoodies you'd like to donate.
                 </p>
               </div>
               <div className="p-6 border rounded-lg">
                 <div className="flex justify-center mb-4">
                   <div className="bg-primary/10 text-primary p-4 rounded-full">
-                    <Eye className="h-8 w-8" />
+                    <Upload className="h-8 w-8" />
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold">High Visibility</h3>
+                <h3 className="text-xl font-semibold">Upload Your Logo</h3>
                 <p className="mt-2 text-muted-foreground">
-                  Premium ad placements, including homepage banners and sponsored content, ensure
-                  your brand gets noticed.
+                  Provide us with your brand logo, and we'll handle the high-quality printing.
                 </p>
               </div>
               <div className="p-6 border rounded-lg">
                 <div className="flex justify-center mb-4">
                   <div className="bg-primary/10 text-primary p-4 rounded-full">
-                    <BarChart className="h-8 w-8" />
+                    <Camera className="h-8 w-8" />
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold">Measurable Results</h3>
+                <h3 className="text-xl font-semibold">We Distribute & Document</h3>
                 <p className="mt-2 text-muted-foreground">
-                  Track your campaign's performance with our detailed analytics and transparent
-                  reporting.
+                  Our team distributes the hoodies and captures photos/videos of the event for your
+                  brand.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Packages Section */}
-        <section id="packages" className="bg-gray-50 py-16 md:py-24">
+        {/* Pricing Section */}
+        <section id="pricing" className="bg-gray-50 py-16 md:py-24">
           <div className="w-full max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold">Our Advertising Packages</h2>
+              <h2 className="text-3xl font-bold">Transparent Pricing</h2>
               <p className="mt-4 text-muted-foreground">
-                Choose the plan that's right for your budget and goals.
+                One simple price per hoodie. Everything included.
               </p>
             </div>
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <Card>
+            <div className="flex justify-center">
+              <Card className="max-w-md w-full border-primary">
                 <CardHeader>
-                  <CardTitle>Basic</CardTitle>
-                  <CardDescription>Perfect for getting started.</CardDescription>
+                  <CardTitle>All-Inclusive Package</CardTitle>
+                  <CardDescription className="text-4xl font-bold pt-4">
+                    ₹500 <span className="text-lg font-normal text-muted-foreground">/ hoodie</span>
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <ul className="space-y-2 text-muted-foreground">
                     <li className="flex items-start">
-                      <span className="text-primary mr-3 mt-1">✓</span>Homepage Banner Ad
+                      <span className="text-primary mr-3 mt-1">✓</span>High-Quality 430 GSM Hoodie
                     </li>
                     <li className="flex items-start">
-                      <span className="text-primary mr-3 mt-1">✓</span>Weekly Analytics Report
+                      <span className="text-primary mr-3 mt-1">✓</span>Professional Logo Printing
                     </li>
                     <li className="flex items-start">
-                      <span className="text-primary mr-3 mt-1">✓</span>Email Support
+                      <span className="text-primary mr-3 mt-1">✓</span>Distribution in Your Chosen
+                      City
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary mr-3 mt-1">✓</span>Photos & Media of
+                      Distribution
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary mr-3 mt-1">✓</span>A Heartwarming Brand Story
                     </li>
                   </ul>
                   <Button asChild className="w-full">
-                    <Link href="#contact">Get Started</Link>
-                  </Button>
-                </CardContent>
-              </Card>
-              <Card className="border-primary">
-                <CardHeader>
-                  <CardTitle>Pro</CardTitle>
-                  <CardDescription>For growing brands.</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li className="flex items-start">
-                      <span className="text-primary mr-3 mt-1">✓</span>Everything in Basic, plus:
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-primary mr-3 mt-1">✓</span>Sponsored Content Feature
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-primary mr-3 mt-1">✓</span>Social Media Shoutout
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-primary mr-3 mt-1">✓</span>Priority Support
-                    </li>
-                  </ul>
-                  <Button asChild className="w-full">
-                    <Link href="#contact">Get Started</Link>
-                  </Button>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Enterprise</CardTitle>
-                  <CardDescription>Custom solutions for scale.</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li className="flex items-start">
-                      <span className="text-primary mr-3 mt-1">✓</span>Everything in Pro, plus:
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-primary mr-3 mt-1">✓</span>Custom API Integration
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-primary mr-3 mt-1">✓</span>Dedicated Account Manager
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-primary mr-3 mt-1">✓</span>Quarterly Strategy Call
-                    </li>
-                  </ul>
-                  <Button asChild className="w-full">
-                    <Link href="#contact">Contact Us</Link>
+                    <Link href="#contact">Start Now</Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -175,16 +134,14 @@ export default async function HomePage() {
         {/* Contact/CTA Section */}
         <section id="contact" className="py-16 md:py-24">
           <div className="w-full max-w-3xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold">Ready to Grow Your Brand?</h2>
+            <h2 className="text-3xl font-bold">Ready to Make a Difference?</h2>
             <p className="mt-4 text-muted-foreground">
-              Our team is ready to help you create a custom advertising campaign that delivers
-              results. Get in touch today to discuss your goals.
+              Our team is ready to help you create a custom campaign that gives back to the
+              community. Get in touch today to discuss your goals.
             </p>
             <div className="mt-8">
               <Button asChild size="lg">
-                <a href="mailto:sales@example.com?subject=Advertising Inquiry">
-                  Contact Sales
-                </a>
+                <a href="mailto:sales@example.com?subject=Hoodie Campaign Inquiry">Contact Us</a>
               </Button>
             </div>
           </div>
@@ -193,7 +150,7 @@ export default async function HomePage() {
         {/* Footer */}
         <footer className="border-t">
           <div className="w-full max-w-7xl mx-auto px-4 py-8 text-center text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} Your Brand Ads. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Brand for Good. All rights reserved.</p>
           </div>
         </footer>
       </main>

@@ -85,7 +85,7 @@ function LoginForm() {
                 href="/register"
                 className="font-medium text-yellow-300 hover:text-yellow-400"
               >
-                Sign up to list items
+                Sign up to get started
               </Link>
             </>
           }

@@ -3,8 +3,8 @@ import '../globals.css'
 
 export const metadata = {
   description:
-    'Reach your target audience by advertising with us. We offer premium ad space to grow your brand.',
-  title: 'Your Brand Ads | Premium Advertising Space',
+    "We print your brand's logo on high-quality hoodies and distribute them to the homeless. A powerful way to give back and build your brand story.",
+  title: 'Brand for Good | Meaningful Merch for the Homeless',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
