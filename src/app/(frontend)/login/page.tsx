@@ -66,7 +66,7 @@ function LoginForm() {
         const errorData = await response.json()
         setError(errorData.message || 'Login failed. Please check your credentials.')
       }
-    } catch (err) {
+    } catch (_err) {
       setError('Login failed. Please try again.')
     } finally {
       setIsSubmitting(false)

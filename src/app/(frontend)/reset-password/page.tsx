@@ -17,7 +17,6 @@ function ResetPasswordForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
-  const router = useRouter()
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
 
@@ -82,7 +81,7 @@ function ResetPasswordForm() {
         const errorData = await response.json()
         setError(errorData.message || 'Failed to reset password. Please try again.')
       }
-    } catch (err) {
+    } catch (_err) {
       setError('Failed to reset password. Please try again.')
     } finally {
       setIsSubmitting(false)

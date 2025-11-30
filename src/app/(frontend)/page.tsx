@@ -70,7 +70,7 @@ export default async function HomePage() {
                 </div>
                 <h3 className="text-xl font-semibold">Choose City & Quantity</h3>
                 <p className="mt-2 text-muted-foreground">
-                  Select where you want to make an impact and how many hoodies you'd like to donate.
+                  Select where you want to make an impact and how many hoodies you&apos;d like to donate.
                 </p>
               </div>
               <div className="p-6 border rounded-lg">
@@ -81,7 +81,7 @@ export default async function HomePage() {
                 </div>
                 <h3 className="text-xl font-semibold">Upload Your Logo</h3>
                 <p className="mt-2 text-muted-foreground">
-                  Provide us with your brand logo, and we'll handle the high-quality printing.
+                  Provide us with your brand logo, and we&apos;ll handle the high-quality printing.
                 </p>
               </div>
               <div className="p-6 border rounded-lg">

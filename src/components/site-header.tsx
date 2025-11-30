@@ -4,7 +4,9 @@ import { Button } from '@/components/ui/button'
 
 export interface SiteHeaderProps {
   variant?: 'full' | 'simple'
-  user?: any
+  user?: {
+    role?: string
+  }
   title?: string
   subtitle?: string | React.ReactNode
   className?: string

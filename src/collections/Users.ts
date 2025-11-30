@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import { admins, adminsOnly, adminsOrSelf, anyone, checkRole } from './access'
+import { checkRole } from './access'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -16,7 +16,7 @@ export const Users: CollectionConfig = {
           <html>
             <body>
             You are receiving this because you (or someone else) have requested the reset of the password for your account. Please click on the following link, or paste this into your browser to complete the process: ${resetPasswordURL} If you did not request this, please ignore this email and your password will remain unchanged.
-              
+
             </body>
           </html>
         `
@@ -24,10 +24,10 @@ export const Users: CollectionConfig = {
     },
   },
   access: {
-    create: anyone, // Allow anyone to create a user account (for registration)
-    read: adminsOrSelf, // Allow users to read their own profile, admins can read all
-    update: adminsOrSelf, // Allow users to update their own profile, admins can update all
-    admin: adminsOnly,
+    create: checkRole(['admin']), // Allow anyone to create a user account (for registration)
+    read: checkRole(['admin'], null), // Allow users to read their own profile, admins can read all
+    update: checkRole(['admin'], null), // Allow users to update their own profile, admins can update all
+    admin: checkRole(['admin'], null),
   },
   fields: [
     {
@@ -46,9 +46,9 @@ export const Users: CollectionConfig = {
       defaultValue: 'user',
       required: true,
       access: {
-        read: adminsOnly,
-        create: adminsOnly,
-        update: adminsOnly,
+        read: checkRole(['admin'], null),
+        create: checkRole(['admin'], null),
+        update: checkRole(['admin'], null),
       },
     },
     {

@@ -18,7 +18,7 @@ export default function StartCampaignPage() {
           <Card className="mt-8">
             <CardHeader>
               <CardTitle>Campaign Details</CardTitle>
-              <CardDescription>Let's get started on making a difference together.</CardDescription>
+              <CardDescription>Let&apos;s get started on making a difference together.</CardDescription>
             </CardHeader>
             <CardContent>
               <CampaignForm />
