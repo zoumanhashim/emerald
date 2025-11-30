@@ -38,10 +38,10 @@ export function SiteHeader({
               Process & Pricing
             </Link>
             <Link
-              href="/#contact"
+              href="/info"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
-              Contact
+              Info
             </Link>
           </nav>
 

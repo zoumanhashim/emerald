@@ -149,23 +149,6 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* Contact/CTA Section */}
-        <section
-          id="contact"
-          className="relative py-16 md:py-24 bg-cover bg-center"
-          style={{ backgroundImage: "url('/brands-background.png')" }}
-        >
-          <div className="absolute inset-0 bg-background/80 z-0" />
-          <div className="relative z-10 w-full max-w-3xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold">Contact Us</h2>
-            <div className="mt-4 space-y-2 text-gray-300">
-              <p>WhatsApp: +91 8400452650</p>
-              <p>Head Office: Lucknow, Uttar Pradesh</p>
-              <p>Operations: All over India</p>
-            </div>
-          </div>
-        </section>
-
         {/* Footer */}
         <footer className="border-t">
           <div className="w-full max-w-7xl mx-auto px-4 py-8 text-center text-muted-foreground">
