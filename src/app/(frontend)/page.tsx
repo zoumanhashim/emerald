@@ -30,16 +30,20 @@ export default async function HomePage() {
 
       <main>
         {/* Hero Section */}
-        <section className="bg-gray-50 pt-20">
-          <div className="w-full max-w-7xl mx-auto px-4 py-16 md:py-24">
+        <section
+          className="relative pt-20 bg-cover bg-center"
+          style={{ backgroundImage: "url('/brands-background.png')" }}
+        >
+          <div className="absolute inset-0 bg-background/80 z-0" />
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-4 py-16 md:py-24">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="text-center md:text-left">
-                <p className="mt-6 text-lg text-muted-foreground">
-                  We customize premium hoodies with your brand's logo and deliver them directly to people experiencing homelessness in the Indian city you choose, helping them stay warm through harsh winters.
+                <p className="mt-6 text-lg text-gray-300">
+                  We customize premium hoodies with your brand's logo and deliver them directly to
+                  people experiencing homelessness in the Indian city you choose, helping them stay
+                  warm through harsh winters.
                 </p>
-                <p className="mt-4 text-sm text-muted-foreground">
-                  Only India metro cities
-                </p>
+                <p className="mt-4 text-sm text-gray-400">Only India metro cities</p>
               </div>
               <div>
                 <Image
@@ -73,7 +77,8 @@ export default async function HomePage() {
                 </div>
                 <h3 className="text-xl font-semibold">Choose City & Quantity</h3>
                 <p className="mt-2 text-muted-foreground">
-                  Select where you want to make an impact and how many hoodies you&apos;d like to donate.
+                  Select where you want to make an impact and how many hoodies you&apos;d like to
+                  donate.
                 </p>
               </div>
               <div className="p-6 border rounded-lg">
@@ -150,10 +155,15 @@ export default async function HomePage() {
         </section>
 
         {/* Contact/CTA Section */}
-        <section id="contact" className="py-16 md:py-24">
-          <div className="w-full max-w-3xl mx-auto px-4 text-center">
+        <section
+          id="contact"
+          className="relative py-16 md:py-24 bg-cover bg-center"
+          style={{ backgroundImage: "url('/brands-background.png')" }}
+        >
+          <div className="absolute inset-0 bg-background/80 z-0" />
+          <div className="relative z-10 w-full max-w-3xl mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold">Contact Us</h2>
-            <div className="mt-4 space-y-2 text-muted-foreground">
+            <div className="mt-4 space-y-2 text-gray-300">
               <p>WhatsApp: +91 8400452650</p>
               <p>Head Office: Lucknow, Uttar Pradesh</p>
               <p>Operations: All over India</p>
