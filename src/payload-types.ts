@@ -69,8 +69,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    products: Product;
-    orders: Order;
+    'campaign-inquiries': CampaignInquiry;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -79,8 +78,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    products: ProductsSelect<false> | ProductsSelect<true>;
-    orders: OrdersSelect<false> | OrdersSelect<true>;
+    'campaign-inquiries': CampaignInquiriesSelect<false> | CampaignInquiriesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -165,38 +163,18 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "products".
+ * via the `definition` "campaign-inquiries".
  */
-export interface Product {
+export interface CampaignInquiry {
   id: number;
-  name: string;
-  description: string;
-  price: number;
-  image?: (number | null) | Media;
-  /**
-   * Use this for placeholder images or external image URLs. Either image or imageUrl should be provided.
-   */
-  imageUrl?: string | null;
-  available?: boolean | null;
-  category: 'emerald' | 'ruby' | 'sapphire' | 'diamond' | 'other';
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "orders".
- */
-export interface Order {
-  id: number;
-  user: number | User;
-  items: {
-    product: number | Product;
-    quantity: number;
-    id?: string | null;
-  }[];
-  status: 'pending' | 'completed' | 'cancelled';
-  totalAmount: number;
-  orderDate: string;
+  contactName: string;
+  contactEmail: string;
+  contactPhone?: string | null;
+  city: string;
+  quantity: number;
+  logo: number | Media;
+  message?: string | null;
+  status?: ('new' | 'contacted' | 'closed') | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -216,12 +194,8 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
-        relationTo: 'products';
-        value: number | Product;
-      } | null)
-    | ({
-        relationTo: 'orders';
-        value: number | Order;
+        relationTo: 'campaign-inquiries';
+        value: number | CampaignInquiry;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -310,35 +284,17 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "products_select".
+ * via the `definition` "campaign-inquiries_select".
  */
-export interface ProductsSelect<T extends boolean = true> {
-  name?: T;
-  description?: T;
-  price?: T;
-  image?: T;
-  imageUrl?: T;
-  available?: T;
-  category?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "orders_select".
- */
-export interface OrdersSelect<T extends boolean = true> {
-  user?: T;
-  items?:
-    | T
-    | {
-        product?: T;
-        quantity?: T;
-        id?: T;
-      };
+export interface CampaignInquiriesSelect<T extends boolean = true> {
+  contactName?: T;
+  contactEmail?: T;
+  contactPhone?: T;
+  city?: T;
+  quantity?: T;
+  logo?: T;
+  message?: T;
   status?: T;
-  totalAmount?: T;
-  orderDate?: T;
   updatedAt?: T;
   createdAt?: T;
 }
