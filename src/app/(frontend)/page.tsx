@@ -47,7 +47,7 @@ export default async function HomePage() {
               </div>
               <div>
                 <Image
-                  src="/hoodie-mockup.jpg"
+                  src="/hoodie-mockup.png"
                   alt="Hoodie with 'your ad here' text"
                   width={1200}
                   height={800}
