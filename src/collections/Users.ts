@@ -24,10 +24,31 @@ export const Users: CollectionConfig = {
     },
   },
   access: {
-    create: checkRole(['admin']), // Allow anyone to create a user account (for registration)
-    read: checkRole(['admin'], null), // Allow users to read their own profile, admins can read all
-    update: checkRole(['admin'], null), // Allow users to update their own profile, admins can update all
-    admin: checkRole(['admin'], null),
+    create: ({ req }) => {
+      // Allow anyone to create a user account (for registration)
+      return true
+    },
+    read: ({ req: { user } }) => {
+      if (!user) return false
+      if (checkRole(['admin'], user)) return true
+      // Users can read their own profile
+      return {
+        id: {
+          equals: user.id,
+        },
+      }
+    },
+    update: ({ req: { user } }) => {
+      if (!user) return false
+      if (checkRole(['admin'], user)) return true
+      // Users can update their own profile
+      return {
+        id: {
+          equals: user.id,
+        },
+      }
+    },
+    admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
   fields: [
     {
@@ -46,9 +67,9 @@ export const Users: CollectionConfig = {
       defaultValue: 'user',
       required: true,
       access: {
-        read: checkRole(['admin'], null),
-        create: checkRole(['admin'], null),
-        update: checkRole(['admin'], null),
+        read: ({ req: { user } }) => checkRole(['admin'], user),
+        create: ({ req: { user } }) => checkRole(['admin'], user),
+        update: ({ req: { user } }) => checkRole(['admin'], user),
       },
     },
     {
