@@ -30,20 +30,16 @@ export default async function HomePage() {
 
       <main>
         {/* Hero Section */}
-        <section
-          className="relative pt-20 bg-cover bg-center"
-          style={{ backgroundImage: "url('/brands-background.png')" }}
-        >
-          <div className="absolute inset-0 bg-background/80 z-0" />
+        <section className="relative pt-20">
           <div className="relative z-10 w-full max-w-7xl mx-auto px-4 py-16 md:py-24">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="text-center md:text-left">
-                <p className="mt-6 text-lg text-gray-300">
+                <p className="mt-6 text-lg text-muted-foreground">
                   We customize premium hoodies with your brand's logo and deliver them directly to
                   people experiencing homelessness in the Indian city you choose, helping them stay
                   warm through harsh winters.
                 </p>
-                <p className="mt-4 text-sm text-gray-400">Only India metro cities</p>
+                <p className="mt-4 text-sm text-muted-foreground">Only India metro cities</p>
               </div>
               <div>
                 <Image
@@ -60,11 +56,7 @@ export default async function HomePage() {
         </section>
 
         {/* Process and Pricing Section */}
-        <section
-          id="process-and-pricing"
-          className="relative py-16 md:py-24 bg-cover bg-center"
-          style={{ backgroundImage: "url('/pricing-background.png')" }}
-        >
+        <section id="process-and-pricing" className="relative py-16 md:py-24 bg-secondary">
           <div className="relative z-10 w-full max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold">Simple Process, Transparent Pricing</h2>
@@ -75,7 +67,7 @@ export default async function HomePage() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 text-center mb-16">
-              <div className="p-6 border rounded-lg bg-card/80 backdrop-blur-sm">
+              <div className="p-6 border rounded-lg bg-card">
                 <div className="flex justify-center mb-4">
                   <div className="bg-primary/10 text-primary p-4 rounded-full">
                     <MapPin className="h-8 w-8" />
@@ -87,7 +79,7 @@ export default async function HomePage() {
                   donate.
                 </p>
               </div>
-              <div className="p-6 border rounded-lg bg-card/80 backdrop-blur-sm">
+              <div className="p-6 border rounded-lg bg-card">
                 <div className="flex justify-center mb-4">
                   <div className="bg-primary/10 text-primary p-4 rounded-full">
                     <Upload className="h-8 w-8" />
@@ -98,7 +90,7 @@ export default async function HomePage() {
                   Provide us with your brand logo, and we&apos;ll handle the high-quality printing.
                 </p>
               </div>
-              <div className="p-6 border rounded-lg bg-card/80 backdrop-blur-sm">
+              <div className="p-6 border rounded-lg bg-card">
                 <div className="flex justify-center mb-4">
                   <div className="bg-primary/10 text-primary p-4 rounded-full">
                     <Camera className="h-8 w-8" />
@@ -113,7 +105,7 @@ export default async function HomePage() {
             </div>
 
             <div className="flex justify-center">
-              <Card className="max-w-md w-full border-primary bg-card/80 backdrop-blur-sm">
+              <Card className="max-w-md w-full border-primary bg-card">
                 <CardHeader>
                   <CardTitle>All-Inclusive Package</CardTitle>
                   <CardDescription className="text-4xl font-bold pt-4">
