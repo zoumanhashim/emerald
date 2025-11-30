@@ -6,7 +6,7 @@ export interface SiteHeaderProps {
   variant?: 'full' | 'simple'
   user?: {
     role?: string
-  }
+  } | null
   title?: string
   subtitle?: string | React.ReactNode
   className?: string
