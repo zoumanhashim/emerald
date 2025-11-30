@@ -32,16 +32,10 @@ export function SiteHeader({
           {/* Navigation */}
           <nav className="hidden md:flex items-center gap-6 text-sm">
             <Link
-              href="/#how-it-works"
+              href="/#process-and-pricing"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
-              How It Works
-            </Link>
-            <Link
-              href="/#pricing"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Pricing
+              Process & Pricing
             </Link>
             <Link
               href="/#contact"

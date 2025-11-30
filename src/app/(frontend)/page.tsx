@@ -59,17 +59,23 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* How It Works Section */}
-        <section id="how-it-works" className="py-16 md:py-24">
-          <div className="w-full max-w-7xl mx-auto px-4">
+        {/* Process and Pricing Section */}
+        <section
+          id="process-and-pricing"
+          className="relative py-16 md:py-24 bg-cover bg-center"
+          style={{ backgroundImage: "url('/pricing-background.png')" }}
+        >
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold">A Simple, Transparent Process</h2>
+              <h2 className="text-3xl font-bold">Simple Process, Transparent Pricing</h2>
               <p className="mt-4 text-muted-foreground">
-                Making a difference has never been easier.
+                Making a difference has never been easier. Everything is included in one simple
+                price.
               </p>
             </div>
-            <div className="grid md:grid-cols-3 gap-8 text-center">
-              <div className="p-6 border rounded-lg">
+
+            <div className="grid md:grid-cols-3 gap-8 text-center mb-16">
+              <div className="p-6 border rounded-lg bg-card/80 backdrop-blur-sm">
                 <div className="flex justify-center mb-4">
                   <div className="bg-primary/10 text-primary p-4 rounded-full">
                     <MapPin className="h-8 w-8" />
@@ -81,7 +87,7 @@ export default async function HomePage() {
                   donate.
                 </p>
               </div>
-              <div className="p-6 border rounded-lg">
+              <div className="p-6 border rounded-lg bg-card/80 backdrop-blur-sm">
                 <div className="flex justify-center mb-4">
                   <div className="bg-primary/10 text-primary p-4 rounded-full">
                     <Upload className="h-8 w-8" />
@@ -92,7 +98,7 @@ export default async function HomePage() {
                   Provide us with your brand logo, and we&apos;ll handle the high-quality printing.
                 </p>
               </div>
-              <div className="p-6 border rounded-lg">
+              <div className="p-6 border rounded-lg bg-card/80 backdrop-blur-sm">
                 <div className="flex justify-center mb-4">
                   <div className="bg-primary/10 text-primary p-4 rounded-full">
                     <Camera className="h-8 w-8" />
@@ -105,23 +111,7 @@ export default async function HomePage() {
                 </p>
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* Pricing Section */}
-        <section
-          id="pricing"
-          className="relative py-16 md:py-24 bg-cover bg-center"
-          style={{ backgroundImage: "url('/pricing-background.png')" }}
-        >
-          <div className="absolute inset-0 bg-background/80 z-0" />
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold">Transparent Pricing</h2>
-              <p className="mt-4 text-muted-foreground">
-                One simple price per hoodie. Everything included.
-              </p>
-            </div>
             <div className="flex justify-center">
               <Card className="max-w-md w-full border-primary bg-card/80 backdrop-blur-sm">
                 <CardHeader>
