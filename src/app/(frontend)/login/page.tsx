@@ -83,7 +83,7 @@ function LoginForm() {
               Don&apos;t have an account?{' '}
               <Link
                 href="/register"
-                className="font-medium text-yellow-300 hover:text-yellow-400"
+                className="font-medium text-primary transition-all hover:brightness-90"
               >
                 Sign up to get started
               </Link>
@@ -133,7 +133,7 @@ function LoginForm() {
                   </label>
                   <Link
                     href="/forgot-password"
-                    className="text-sm font-medium text-yellow-300 hover:text-yellow-400"
+                    className="text-sm font-medium text-primary transition-all hover:brightness-90"
                   >
                     Forgot password?
                   </Link>

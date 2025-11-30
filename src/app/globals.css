@@ -51,24 +51,24 @@
 }
 
 .dark {
-  --background: oklch(9.38% 0.011 263.45);
-  --foreground: oklch(98.75% 0.006 263.45);
-  --card: oklch(9.38% 0.011 263.45);
-  --card-foreground: oklch(98.75% 0.006 263.45);
-  --popover: oklch(9.38% 0.011 263.45);
-  --popover-foreground: oklch(98.75% 0.006 263.45);
-  --primary: oklch(45.2% 0.15 263.45);
-  --primary-foreground: oklch(98.75% 0.006 263.45);
-  --secondary: oklch(14.83% 0.01 263.45);
-  --secondary-foreground: oklch(98.75% 0.006 263.45);
-  --muted: oklch(14.83% 0.01 263.45);
-  --muted-foreground: oklch(62.19% 0.008 263.45);
-  --accent: oklch(14.83% 0.01 263.45);
-  --accent-foreground: oklch(98.75% 0.006 263.45);
-  --destructive: oklch(56.17% 0.224 16.59);
-  --border: oklch(14.83% 0.01 263.45);
-  --input: oklch(14.83% 0.01 263.45);
-  --ring: oklch(45.2% 0.15 263.45);
+  --background: oklch(10% 0.01 240); /* Dark Slate Blue */
+  --foreground: oklch(95% 0.01 240); /* Light Gray */
+  --card: oklch(15% 0.02 240); /* Slightly Lighter Slate */
+  --card-foreground: oklch(95% 0.01 240);
+  --popover: oklch(12% 0.015 240);
+  --popover-foreground: oklch(95% 0.01 240);
+  --primary: oklch(80% 0.15 90); /* Vibrant Gold */
+  --primary-foreground: oklch(15% 0.05 90); /* Dark text for buttons */
+  --secondary: oklch(25% 0.02 240);
+  --secondary-foreground: oklch(95% 0.01 240);
+  --muted: oklch(25% 0.02 240);
+  --muted-foreground: oklch(65% 0.01 240); /* Softer muted text */
+  --accent: oklch(25% 0.02 240);
+  --accent-foreground: oklch(95% 0.01 240);
+  --destructive: oklch(56.17% 0.224 16.59); /* Keep destructive red */
+  --border: oklch(25% 0.02 240); /* Subtle border */
+  --input: oklch(25% 0.02 240);
+  --ring: oklch(80% 0.15 90); /* Ring color matches primary */
 }
 
 @layer base {
