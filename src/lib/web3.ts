@@ -1,34 +1,45 @@
-import { ethers } from 'ethers'
+import { useWriteContract, useWaitForTransactionReceipt, useAccount } from 'wagmi'
+import { parseEther } from 'viem'
 
 // Contract ABI - you'll need to generate this after compiling the contract
 const contractABI = [
-  // Add the ABI here after compiling
-]
+  {
+    inputs: [{ internalType: 'uint256', name: '_mintAmount', type: 'uint256' }],
+    name: 'mint',
+    outputs: [],
+    stateMutability: 'payable',
+    type: 'function',
+  },
+] as const
 
-const contractAddress = process.env.CONTRACT_ADDRESS!
+const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`
 
-export const getContract = (signer?: ethers.Signer) => {
-  const provider = new ethers.providers.Web3Provider(window.ethereum)
-  const contract = new ethers.Contract(contractAddress, contractABI, signer || provider)
-  return contract
-}
+export function useMintNFT() {
+  const { writeContract, data: hash, isPending } = useWriteContract()
+  const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({
+    hash,
+  })
 
-export const connectWallet = async () => {
-  if (!window.ethereum) {
-    throw new Error('MetaMask not installed')
+  const mint = (amount: number) => {
+    writeContract({
+      address: contractAddress,
+      abi: contractABI,
+      functionName: 'mint',
+      args: [BigInt(amount)],
+      value: parseEther((amount * 15000).toString()), // 15,000 MATIC per emerald
+    })
   }
 
-  await window.ethereum.request({ method: 'eth_requestAccounts' })
-  const provider = new ethers.providers.Web3Provider(window.ethereum)
-  const signer = provider.getSigner()
-  return signer
+  return {
+    mint,
+    hash,
+    isPending,
+    isConfirming,
+    isConfirmed,
+  }
 }
 
-export const mintNFT = async (amount: number) => {
-  const signer = await connectWallet()
-  const contract = getContract(signer)
-
-  const tx = await contract.mint(amount)
-  await tx.wait()
-  return tx
+export function useWallet() {
+  const { address, isConnected } = useAccount()
+  return { address, isConnected }
 }

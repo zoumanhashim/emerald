@@ -1,10 +1,11 @@
 import React from 'react'
 import '../globals.css'
+import { Providers } from '@/components/providers'
 
 export const metadata = {
   description:
-    "We print your brand's logo on high-quality hoodies and distribute them to the homeless. A powerful way to give back and build your brand story.",
-  title: 'Those Who Struggle | Meaningful Merch for the Homeless',
+    "Own authenticated Panjshir Valley emeralds through blockchain certification. Each NFT represents a real, scanned emerald stone.",
+  title: 'The Emerald Standard | Blockchain Emerald NFTs',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
@@ -13,7 +14,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en" className="scroll-smooth">
       <body>
-        <main>{children}</main>
+        <Providers>
+          <main>{children}</main>
+        </Providers>
       </body>
     </html>
   )

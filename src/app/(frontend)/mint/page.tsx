@@ -2,51 +2,38 @@
 
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { SiteHeader } from '@/components/site-header'
-import { mintNFT, connectWallet } from '@/lib/web3'
-import { Loader2, Gem } from 'lucide-react'
+import { useMintNFT, useWallet } from '@/lib/web3'
+import { Loader2, Gem, CheckCircle, Clock } from 'lucide-react'
 
 export default function MintPage() {
   const [amount, setAmount] = useState(1)
-  const [isMinting, setIsMinting] = useState(false)
-  const [error, setError] = useState('')
-  const [success, setSuccess] = useState('')
-  const [walletConnected, setWalletConnected] = useState(false)
+  const { address, isConnected } = useWallet()
+  const { mint, hash, isPending, isConfirming, isConfirmed } = useMintNFT()
   const router = useRouter()
 
-  const handleConnectWallet = async () => {
-    try {
-      await connectWallet()
-      setWalletConnected(true)
-      setError('')
-    } catch (err) {
-      setError('Failed to connect wallet. Please install MetaMask.')
-    }
+  const handleMint = () => {
+    if (!isConnected) return
+    mint(amount)
   }
 
-  const handleMint = async () => {
-    if (!walletConnected) {
-      setError('Please connect your wallet first.')
-      return
-    }
+  const getStatusIcon = () => {
+    if (isConfirmed) return <CheckCircle className="h-5 w-5 text-green-500" />
+    if (isConfirming) return <Clock className="h-5 w-5 text-yellow-500" />
+    if (isPending) return <Loader2 className="h-5 w-5 animate-spin text-blue-500" />
+    return <Gem className="h-5 w-5" />
+  }
 
-    setIsMinting(true)
-    setError('')
-    setSuccess('')
-
-    try {
-      const tx = await mintNFT(amount)
-      setSuccess(`Successfully minted ${amount} TES Emerald NFT(s)! Transaction: ${tx.hash}`)
-    } catch (err) {
-      setError('Minting failed. Please try again.')
-      console.error(err)
-    } finally {
-      setIsMinting(false)
-    }
+  const getStatusText = () => {
+    if (isConfirmed) return 'Minting successful!'
+    if (isConfirming) return 'Confirming transaction...'
+    if (isPending) return 'Processing mint...'
+    return 'Ready to mint'
   }
 
   return (
@@ -68,7 +55,7 @@ export default function MintPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Gem className="h-5 w-5" />
+                  {getStatusIcon()}
                   Mint TES Emerald
                 </CardTitle>
                 <CardDescription>
@@ -76,23 +63,12 @@ export default function MintPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                {error && (
-                  <Alert variant="destructive">
-                    <AlertDescription>{error}</AlertDescription>
-                  </Alert>
-                )}
+                {/* Wallet Connection */}
+                <div className="flex justify-center">
+                  <ConnectButton />
+                </div>
 
-                {success && (
-                  <Alert>
-                    <AlertDescription>{success}</AlertDescription>
-                  </Alert>
-                )}
-
-                {!walletConnected ? (
-                  <Button onClick={handleConnectWallet} className="w-full">
-                    Connect Wallet
-                  </Button>
-                ) : (
+                {isConnected && (
                   <>
                     <div className="space-y-2">
                       <label htmlFor="amount" className="text-sm font-medium">
@@ -105,6 +81,7 @@ export default function MintPage() {
                         max="10"
                         value={amount}
                         onChange={(e) => setAmount(parseInt(e.target.value) || 1)}
+                        disabled={isPending || isConfirming}
                       />
                     </div>
 
@@ -119,12 +96,37 @@ export default function MintPage() {
                       </div>
                     </div>
 
+                    {/* Status Messages */}
+                    {(isPending || isConfirming || isConfirmed) && (
+                      <Alert>
+                        <AlertDescription className="flex items-center gap-2">
+                          {getStatusIcon()}
+                          {getStatusText()}
+                        </AlertDescription>
+                      </Alert>
+                    )}
+
+                    {hash && (
+                      <Alert>
+                        <AlertDescription>
+                          <a
+                            href={`https://polygonscan.com/tx/${hash}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-primary hover:underline"
+                          >
+                            View transaction on PolygonScan
+                          </a>
+                        </AlertDescription>
+                      </Alert>
+                    )}
+
                     <Button
                       onClick={handleMint}
-                      disabled={isMinting}
+                      disabled={isPending || isConfirming || !isConnected}
                       className="w-full"
                     >
-                      {isMinting ? (
+                      {isPending ? (
                         <>
                           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                           Minting...
@@ -171,6 +173,15 @@ export default function MintPage() {
                     Only 2,300 emeralds available, matching our Year 1 inventory.
                   </p>
                 </div>
+
+                {isConnected && (
+                  <div className="space-y-2">
+                    <h4 className="font-semibold">Connected Wallet</h4>
+                    <p className="text-sm text-muted-foreground font-mono">
+                      {address?.slice(0, 6)}...{address?.slice(-4)}
+                    </p>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>

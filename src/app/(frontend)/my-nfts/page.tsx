@@ -1,30 +1,68 @@
-import { getPayload } from 'payload'
-import React from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { headers as getHeaders } from 'next/headers.js'
+'use client'
 
-import config from '@/payload.config'
+import { useEffect, useState } from 'react'
+import { useWallet } from '@/lib/web3'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+import Link from 'next/link'
+import Image from 'next/image'
 import { SiteHeader } from '@/components/site-header'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Alert, AlertDescription } from '@/components/ui/alert'
+import { Loader2 } from 'lucide-react'
 
-export default async function MyNFTsPage() {
-  const headers = await getHeaders()
-  const payloadConfig = await config
-  const payload = await getPayload({ config: payloadConfig })
+interface OwnedNFT {
+  tokenId: string
+  name?: string
+  description?: string
+  image?: {
+    cachedUrl?: string
+    originalUrl?: string
+  }
+  raw: {
+    metadata: {
+      attributes?: Array<{
+        trait_type: string
+        value: string | number
+      }>
+    }
+  }
+}
 
-  let user = null
-  try {
-    const authResult = await payload.auth({ headers })
-    user = authResult.user
-  } catch (error) {
-    console.log('Auth check failed:', error)
+export default function MyNFTsPage() {
+  const { address, isConnected } = useWallet()
+  const [nfts, setNfts] = useState<OwnedNFT[]>([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  useEffect(() => {
+    if (isConnected && address) {
+      fetchOwnedNFTs()
+    }
+  }, [isConnected, address])
+
+  const fetchOwnedNFTs = async () => {
+    setLoading(true)
+    setError('')
+
+    try {
+      const response = await fetch(`/api/alchemy?owner=${address}`)
+      if (!response.ok) {
+        throw new Error('Failed to fetch NFTs')
+      }
+
+      const data = await response.json()
+      setNfts(data.ownedNFTs)
+    } catch (err) {
+      setError('Failed to load your NFTs. Please try again.')
+      console.error(err)
+    } finally {
+      setLoading(false)
+    }
   }
 
-  if (!user) {
+  if (!isConnected) {
     return (
       <div className="min-h-screen bg-background text-foreground">
         <SiteHeader variant="full" />
@@ -33,11 +71,12 @@ export default async function MyNFTsPage() {
           <div className="w-full max-w-4xl mx-auto px-4 py-16">
             <div className="text-center">
               <h1 className="text-4xl font-bold mb-4">My NFTs</h1>
-              <Alert className="max-w-md mx-auto">
+              <Alert className="max-w-md mx-auto mb-6">
                 <AlertDescription>
-                  Please <Link href="/login" className="text-primary hover:underline">sign in</Link> to view your NFTs.
+                  Connect your wallet to view your emerald NFT collection.
                 </AlertDescription>
               </Alert>
+              <ConnectButton />
             </div>
           </div>
         </main>
@@ -45,22 +84,9 @@ export default async function MyNFTsPage() {
     )
   }
 
-  // In a real implementation, you'd track NFT ownership on-chain
-  // For now, we'll show all minted emeralds as an example
-  const emeralds = await payload.find({
-    collection: 'emeralds',
-    where: {
-      minted: {
-        equals: true,
-      },
-    },
-    limit: 50,
-    sort: '-createdAt',
-  })
-
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <SiteHeader variant="full" user={user} />
+      <SiteHeader variant="full" />
 
       <main className="pt-20">
         <div className="w-full max-w-7xl mx-auto px-4 py-16">
@@ -69,24 +95,41 @@ export default async function MyNFTsPage() {
             <p className="mt-4 text-lg text-muted-foreground">
               View and manage your collection of certified emerald NFTs.
             </p>
+            <p className="text-sm text-muted-foreground mt-2">
+              Connected: {address?.slice(0, 6)}...{address?.slice(-4)}
+            </p>
           </div>
 
-          {emeralds.docs.length === 0 ? (
+          {loading && (
+            <div className="flex justify-center py-12">
+              <Loader2 className="h-8 w-8 animate-spin" />
+            </div>
+          )}
+
+          {error && (
+            <Alert variant="destructive" className="max-w-md mx-auto mb-6">
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
+
+          {!loading && !error && nfts.length === 0 && (
             <div className="text-center py-12">
               <p className="text-muted-foreground mb-4">You haven't minted any NFTs yet.</p>
               <Button asChild>
                 <Link href="/mint">Mint Your First NFT</Link>
               </Button>
             </div>
-          ) : (
+          )}
+
+          {!loading && nfts.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {emeralds.docs.map((emerald) => (
-                <Card key={emerald.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+              {nfts.map((nft) => (
+                <Card key={nft.tokenId} className="overflow-hidden hover:shadow-lg transition-shadow">
                   <div className="aspect-square relative">
-                    {emerald.image && typeof emerald.image === 'object' && emerald.image.url ? (
+                    {nft.image?.cachedUrl || nft.image?.originalUrl ? (
                       <Image
-                        src={emerald.image.url}
-                        alt={`Emerald ${emerald.stoneId}`}
+                        src={nft.image.cachedUrl || nft.image.originalUrl!}
+                        alt={nft.name || `Emerald #${nft.tokenId}`}
                         fill
                         className="object-cover"
                       />
@@ -100,27 +143,37 @@ export default async function MyNFTsPage() {
                     </div>
                   </div>
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-lg">{emerald.stoneId}</CardTitle>
+                    <CardTitle className="text-lg">
+                      {nft.name || `TES Emerald #${nft.tokenId}`}
+                    </CardTitle>
                     <CardDescription>
-                      Grade {emerald.grade} • {emerald.weight}ct
+                      Token ID: #{nft.tokenId}
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="pt-0">
                     <div className="space-y-2 text-sm text-muted-foreground">
-                      <p>Origin: {emerald.origin}</p>
-                      {emerald.tokenId && <p>Token ID: #{emerald.tokenId}</p>}
-                      {emerald.ipfsHash && (
-                        <p>
-                          <a
-                            href={`https://ipfs.io/ipfs/${emerald.ipfsHash}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-primary hover:underline"
-                          >
-                            View on IPFS
-                          </a>
-                        </p>
-                      )}
+                      {nft.raw.metadata.attributes?.map((attr, index) => (
+                        <div key={index} className="flex justify-between">
+                          <span>{attr.trait_type}:</span>
+                          <span className="font-medium">{attr.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-4">
+                      <Button
+                        asChild
+                        variant="outline"
+                        size="sm"
+                        className="w-full"
+                      >
+                        <a
+                          href={`https://opensea.io/assets/matic/${process.env.NEXT_PUBLIC_CONTRACT_ADDRESS}/${nft.tokenId}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          View on OpenSea
+                        </a>
+                      </Button>
                     </div>
                   </CardContent>
                 </Card>
