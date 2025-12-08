@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getPayload } from 'payload'
 import React from 'react'
-import { Camera, MapPin, Upload } from 'lucide-react'
+import { Camera, MapPin, Upload, Gem } from 'lucide-react'
 
 import config from '@/payload.config'
 import { SiteHeader } from '@/components/site-header'
@@ -34,19 +34,28 @@ export default async function HomePage() {
           <div className="relative z-10 w-full max-w-7xl mx-auto px-4 py-16 md:py-24">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="text-center md:text-left">
-                <p className="mt-6 text-lg text-muted-foreground">
-                  We customize premium hoodies with your brand&apos;s logo and deliver them directly to
-                  people experiencing homelessness in the Indian city you choose, helping them stay
-                  warm through harsh winters.
+                <h1 className="text-5xl font-bold mb-6">
+                  The Emerald Standard
+                </h1>
+                <p className="text-xl text-muted-foreground mb-8">
+                  Own authenticated Panjshir Valley emeralds through blockchain certification.
+                  Each NFT represents a real, scanned emerald stone.
                 </p>
-                <p className="mt-4 text-sm text-muted-foreground">Only India metro cities</p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button asChild size="lg">
+                    <Link href="/mint">Mint Your Emerald NFT</Link>
+                  </Button>
+                  <Button asChild variant="outline" size="lg">
+                    <Link href="/info">Learn More</Link>
+                  </Button>
+                </div>
               </div>
               <div>
                 <Image
-                  src="/hoodie-mockup.png"
-                  alt="Hoodie with 'your ad here' text"
-                  width={1200}
-                  height={800}
+                  src="/emerald-placeholder.png"
+                  alt="High-quality emerald stone"
+                  width={600}
+                  height={400}
                   className="rounded-lg shadow-lg"
                   priority
                 />
@@ -59,10 +68,9 @@ export default async function HomePage() {
         <section id="process-and-pricing" className="relative py-16 md:py-24 bg-secondary">
           <div className="relative z-10 w-full max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold">Simple Process, Transparent Pricing</h2>
+              <h2 className="text-3xl font-bold">From Mine to Blockchain</h2>
               <p className="mt-4 text-muted-foreground">
-                Making a difference has never been easier. Everything is included in one simple
-                price.
+                Our rigorous process ensures every emerald is authenticated, scanned, and tokenized.
               </p>
             </div>
 
@@ -73,21 +81,9 @@ export default async function HomePage() {
                     <MapPin className="h-8 w-8" />
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold">Choose City & Quantity</h3>
+                <h3 className="text-xl font-semibold">Source & Grade</h3>
                 <p className="mt-2 text-muted-foreground">
-                  Select where you want to make an impact and how many hoodies you&apos;d like to
-                  donate.
-                </p>
-              </div>
-              <div className="p-6 border rounded-lg bg-card">
-                <div className="flex justify-center mb-4">
-                  <div className="bg-primary/10 text-primary p-4 rounded-full">
-                    <Upload className="h-8 w-8" />
-                  </div>
-                </div>
-                <h3 className="text-xl font-semibold">Upload Your Logo</h3>
-                <p className="mt-2 text-muted-foreground">
-                  Provide us with your brand logo, and we&apos;ll handle the high-quality printing.
+                  Premium emeralds sourced from Panjshir Valley, graded by expert gemologists.
                 </p>
               </div>
               <div className="p-6 border rounded-lg bg-card">
@@ -96,10 +92,20 @@ export default async function HomePage() {
                     <Camera className="h-8 w-8" />
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold">We Distribute & Document</h3>
+                <h3 className="text-xl font-semibold">Scan & Upload</h3>
                 <p className="mt-2 text-muted-foreground">
-                  Our team distributes the hoodies and captures photos/videos of the event for your
-                  brand.
+                  High-resolution microscopic scans uploaded to IPFS for permanent storage.
+                </p>
+              </div>
+              <div className="p-6 border rounded-lg bg-card">
+                <div className="flex justify-center mb-4">
+                  <div className="bg-primary/10 text-primary p-4 rounded-full">
+                    <Gem className="h-8 w-8" />
+                  </div>
+                </div>
+                <h3 className="text-xl font-semibold">Mint NFT</h3>
+                <p className="mt-2 text-muted-foreground">
+                  Tokenize your emerald on Polygon blockchain with immutable provenance.
                 </p>
               </div>
             </div>
@@ -107,33 +113,31 @@ export default async function HomePage() {
             <div className="flex justify-center">
               <Card className="max-w-md w-full border-primary bg-card">
                 <CardHeader>
-                  <CardTitle>All-Inclusive Package</CardTitle>
+                  <CardTitle>Premium Emerald NFT</CardTitle>
                   <CardDescription className="text-4xl font-bold pt-4">
-                    ₹500 <span className="text-lg font-normal text-muted-foreground">/ hoodie</span>
+                    15,000 <span className="text-lg font-normal text-muted-foreground">MATIC</span>
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <ul className="space-y-2 text-muted-foreground">
                     <li className="flex items-start">
-                      <span className="text-primary mr-3 mt-1">✓</span>High-Quality 430 GSM Hoodie
+                      <span className="text-primary mr-3 mt-1">✓</span>Physical Emerald Backing
                     </li>
                     <li className="flex items-start">
-                      <span className="text-primary mr-3 mt-1">✓</span>Professional Logo Printing
+                      <span className="text-primary mr-3 mt-1">✓</span>High-Resolution IPFS Images
                     </li>
                     <li className="flex items-start">
-                      <span className="text-primary mr-3 mt-1">✓</span>Distribution in Your Chosen
-                      City
+                      <span className="text-primary mr-3 mt-1">✓</span>Blockchain Provenance
                     </li>
                     <li className="flex items-start">
-                      <span className="text-primary mr-3 mt-1">✓</span>Photos & Media of
-                      Distribution
+                      <span className="text-primary mr-3 mt-1">✓</span>Expert Certification
                     </li>
                     <li className="flex items-start">
-                      <span className="text-primary mr-3 mt-1">✓</span>A Heartwarming Brand Story
+                      <span className="text-primary mr-3 mt-1">✓</span>Limited to 2,300 Stones
                     </li>
                   </ul>
                   <Button asChild className="w-full">
-                    <Link href="/start-campaign">Start Now</Link>
+                    <Link href="/mint">Start Minting</Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -144,7 +148,7 @@ export default async function HomePage() {
         {/* Footer */}
         <footer className="border-t">
           <div className="w-full max-w-7xl mx-auto px-4 py-8 text-center text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} Those Who Struggle. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} The Emerald Standard. All rights reserved.</p>
           </div>
         </footer>
       </main>

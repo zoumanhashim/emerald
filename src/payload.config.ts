@@ -8,6 +8,7 @@ import sharp from 'sharp'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { CampaignInquiries } from './collections/CampaignInquiries'
+import { Emeralds } from './collections/Emeralds'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -31,7 +32,7 @@ export default buildConfig({
   },
   serverURL: getServerSideURL(),
   cors: [getServerSideURL()].filter(Boolean) as string[],
-  collections: [Users, Media, CampaignInquiries],
+  collections: [Users, Media, CampaignInquiries, Emeralds],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

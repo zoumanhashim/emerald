@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Building, Globe, MessageSquare } from 'lucide-react'
+import { Building, Globe, MessageSquare, Gem, Shield, Database } from 'lucide-react'
 
 import { SiteHeader } from '@/components/site-header'
 import { Button } from '@/components/ui/button'
@@ -15,42 +15,29 @@ import {
 export default function InfoPage() {
   const faqs = [
     {
-      question: 'What is the minimum order quantity?',
+      question: 'What makes TES emeralds unique?',
       answer:
-        'The minimum order to start a campaign is 10 hoodies. This allows us to make a meaningful impact in the chosen distribution area.',
+        'Each NFT is backed by a physical emerald stone that has been scanned, graded, and certified in our lab. The high-resolution images are permanently stored on IPFS, and the ownership is recorded on the Polygon blockchain.',
     },
     {
-      question: 'Where do you source your hoodies from?',
-      answer: (
-        <>
-          We source our high-quality, 430 GSM hoodies from a trusted supplier to ensure comfort and
-          durability. You can learn more about the raw products at{' '}
-          <a
-            href="https://www.bulkplaintshirt.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:underline"
-          >
-            bulkplaintshirt.com
-          </a>
-          .
-        </>
-      ),
+      question: 'How is the emerald grading done?',
+      answer:
+        'Our expert gemologists grade emeralds using industry-standard criteria (AAA, AA, A). Each stone is examined under magnification for color, clarity, cut, and carat weight before being scanned and tokenized.',
     },
     {
-      question: 'Can I choose a specific area within a city for distribution?',
+      question: 'Where do the emeralds come from?',
       answer:
-        'While you choose the primary city, our on-ground teams select the specific areas with the most need to ensure the donations have the greatest impact. We focus on shelters, railway stations, and areas with high concentrations of homeless individuals.',
+        'All emeralds are sourced from the renowned Panjshir Valley in Afghanistan, known for producing some of the world\'s finest emeralds. We work directly with trusted suppliers to ensure ethical sourcing.',
     },
     {
-      question: 'What kind of media will I receive?',
+      question: 'What is the total supply?',
       answer:
-        'Your brand receives authentic photo and video proof of every distribution, highlighting your CSR commitment and the real impact your company is creating on the streets of India.',
+        'The collection is limited to 2,300 NFTs, matching our Year 1 inventory of certified emeralds. This ensures scarcity and value preservation.',
     },
     {
-      question: 'How long does the entire process take?',
+      question: 'How do I redeem my physical emerald?',
       answer:
-        'From finalizing your order to distribution, the process typically takes 2-3 weeks. This includes hoodie production, logo printing, logistics, and coordinating the distribution event.',
+        'NFT holders can contact us through our admin panel to arrange redemption of their physical stone. We maintain secure storage and can ship worldwide.',
     },
   ]
 
@@ -60,10 +47,53 @@ export default function InfoPage() {
       <main className="pt-20">
         <div className="w-full max-w-5xl mx-auto px-4 py-16">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold">Get in Touch</h1>
+            <h1 className="text-4xl font-bold">About The Emerald Standard</h1>
             <p className="mt-4 text-lg text-muted-foreground">
-              We&apos;re here to help with any questions you may have.
+              Revolutionizing gemstone ownership through blockchain technology and physical backing.
             </p>
+          </div>
+
+          {/* Feature Cards */}
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            <Card className="text-center">
+              <CardHeader>
+                <div className="flex justify-center mb-4">
+                  <div className="bg-primary/10 text-primary p-4 rounded-full">
+                    <Gem className="h-8 w-8" />
+                  </div>
+                </div>
+                <CardTitle>Physical Backing</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p>Every NFT represents a real emerald stone held in secure storage.</p>
+              </CardContent>
+            </Card>
+            <Card className="text-center">
+              <CardHeader>
+                <div className="flex justify-center mb-4">
+                  <div className="bg-primary/10 text-primary p-4 rounded-full">
+                    <Shield className="h-8 w-8" />
+                  </div>
+                </div>
+                <CardTitle>Blockchain Security</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p>Immutable ownership records on Polygon blockchain with smart contract verification.</p>
+              </CardContent>
+            </Card>
+            <Card className="text-center">
+              <CardHeader>
+                <div className="flex justify-center mb-4">
+                  <div className="bg-primary/10 text-primary p-4 rounded-full">
+                    <Database className="h-8 w-8" />
+                  </div>
+                </div>
+                <CardTitle>IPFS Storage</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p>High-resolution images and metadata stored permanently on decentralized IPFS.</p>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Contact Cards */}
@@ -75,14 +105,14 @@ export default function InfoPage() {
                     <MessageSquare className="h-8 w-8" />
                   </div>
                 </div>
-                <CardTitle>WhatsApp Us</CardTitle>
+                <CardTitle>Support</CardTitle>
               </CardHeader>
               <CardContent>
                 <a
-                  href="https://wa.me/918400452650"
+                  href="mailto:support@theemeraldstandard.com"
                   className="text-primary font-semibold hover:underline"
                 >
-                  +91 8400452650
+                  support@theemeraldstandard.com
                 </a>
               </CardContent>
             </Card>
@@ -106,10 +136,10 @@ export default function InfoPage() {
                     <Globe className="h-8 w-8" />
                   </div>
                 </div>
-                <CardTitle>Our Reach</CardTitle>
+                <CardTitle>Global Shipping</CardTitle>
               </CardHeader>
               <CardContent>
-                <p>Operations All Over India</p>
+                <p>Worldwide delivery available</p>
               </CardContent>
             </Card>
           </div>
