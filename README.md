@@ -1,49 +1,46 @@
-# 🍿 Dyad Snacks
+# The Emerald Standard
 
-This template comes configured with the bare minimum to get started on anything you need.
+A blockchain-based platform for authenticating and tokenizing Panjshir Valley emeralds. Each NFT represents a real, scanned emerald stone with immutable provenance on the Polygon blockchain.
 
 ## Features
 
 ### 🌟 Public Features (No Authentication Required)
-- **Browse Snacks**: View all available snack items with images, descriptions, prices, and categories
+- **Browse Gallery**: View all available emerald NFTs with images, grades, and specifications
+- **Learn About Process**: Understand our certification and tokenization workflow
 - **Responsive Design**: Fully responsive interface that works on desktop, tablet, and mobile devices
 
 ### 👤 Authenticated User Features
-- **User Registration & Login**: Secure authentication system
-- **Place Orders**: Add snacks to cart and place orders
-- **Order History**: View personal order history with status tracking
-- **Order Tracking**: See order status (Pending, Completed, Cancelled)
+- **Mint NFTs**: Connect wallet and mint certified emerald NFTs
+- **View Collection**: Browse your owned emerald NFTs with metadata
+- **Blockchain Integration**: Direct interaction with Polygon smart contracts
 
 ### 🔧 Admin Features
-- **Admin Dashboard**: Comprehensive order management interface
-- **Order Management**: Review all orders from all customers
-- **Status Updates**: Update order status (Pending → Completed/Cancelled)
-- **Order Statistics**: View summary statistics of all orders
-- **Snack Management**: Add, edit, and manage snack inventory through Payload CMS admin panel
+- **Scanner Interface**: Access hardware bridge instructions and recent scans
+- **Inventory Management**: Full CMS control over emerald database through Payload admin panel
+- **User Management**: Manage user accounts and roles
 
 ## Tech Stack
 
 - **Frontend**: Next.js 15, React 19, TypeScript
-- **Backend**: Payload CMS 3.0
-- **Database**: Vercel Postgres
+- **Backend**: Payload CMS 3.0 with PostgreSQL
+- **Blockchain**: Polygon (MATIC) with custom ERC-721 smart contract
+- **Storage**: IPFS for permanent image and metadata storage
 - **Authentication**: Built-in Payload authentication with role-based access
-- **Styling**: Custom CSS with modern responsive design
-- **Media**: Sharp for image processing
+- **Hardware Bridge**: Python script with OpenCV for emerald scanning
 
 ## User Roles
 
 ### Regular Users (`role: 'user'`)
-- Can view all available snacks
-- Can place orders for snacks
-- Can view their own order history
-- Cannot modify or cancel orders once placed
+- Can browse the emerald gallery
+- Can mint NFTs using connected wallet
+- Can view their NFT collection
+- Cannot access admin or scanner features
 
 ### Admin Users (`role: 'admin'`)
 - All regular user permissions
-- Can access admin dashboard
-- Can view all orders from all customers  
-- Can update order status
-- Can manage snack inventory through CMS admin panel
+- Can access scanner interface and instructions
+- Can manage emerald inventory through CMS
+- Can access full admin panel for system management
 
 ## Collections
 
@@ -52,36 +49,31 @@ This template comes configured with the bare minimum to get started on anything 
 - Role-based authentication (user/admin)
 - Default role: 'user'
 
-### Snacks
-- Name, description, price, category
-- Image upload with media relation
-- Availability toggle
-- Categories: Chips, Candy, Cookies, Nuts, Crackers, Drinks
-
-### Orders
-- User relationship
-- Array of items (snack + quantity)
-- Total amount calculation
-- Status tracking (pending/completed/cancelled)
-- Order date tracking
+### Emeralds
+- Stone ID, weight, grade, origin
+- High-resolution scan images
+- IPFS hash for metadata
+- Token ID and minting status
+- Blockchain provenance
 
 ### Media
-- Image upload and management
+- Image upload and management for emerald scans
 - Alt text for accessibility
 
 ## Getting Started
 
 ### Prerequisites
 - Node.js 18+ or 20+
-- pnpm 9+ or 10+
+- Python 3.8+ with OpenCV
 - PostgreSQL database (Vercel Postgres recommended)
+- MetaMask wallet for NFT minting
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd dyad-snacks
+   cd the-emerald-standard
    ```
 
 2. **Install dependencies**
@@ -93,11 +85,17 @@ This template comes configured with the bare minimum to get started on anything 
    ```bash
    cp .env.example .env
    ```
-   
+
    Configure your environment variables:
    ```env
    PAYLOAD_SECRET=your-secret-key
    POSTGRES_URL=your-postgres-connection-string
+   PINATA_API_KEY=your-pinata-api-key
+   PINATA_SECRET_KEY=your-pinata-secret-key
+   POLYGON_RPC_URL=https://polygon-rpc.com/
+   MUMBAI_RPC_URL=https://rpc-mumbai.maticvigil.com
+   PRIVATE_KEY=your-wallet-private-key
+   CONTRACT_ADDRESS=deployed-contract-address
    ```
 
 4. **Start the development server**
@@ -111,66 +109,92 @@ This template comes configured with the bare minimum to get started on anything 
 ### First Time Setup
 
 1. **Create Admin User**: Visit `/admin` to create your first admin user
-2. **Add Snacks**: Use the admin panel to add snack items with images
-3. **Test Ordering**: Create a regular user account to test the ordering flow
+2. **Deploy Smart Contract**: Use Hardhat to deploy the EmeraldStandard contract
+3. **Configure Scanner**: Set up your digital microscope and run the Python script
+4. **Add Emeralds**: Use the scanner to certify and add emeralds to inventory
 
 ## API Endpoints
 
-### Orders
-- `POST /api/orders` - Create a new order (authenticated users)
-- `PATCH /api/orders/update-status` - Update order status (admin only)
+### Emeralds
+- `POST /api/ingest` - Upload scanned emerald data (admin/hardware bridge)
+- `GET /api/user-nfts` - Get user's minted NFTs (authenticated)
 
 ### Built-in Payload Endpoints
 - `/api/users` - User management
-- `/api/snacks` - Snack management  
+- `/api/emeralds` - Emerald inventory management
 - `/api/media` - Media upload/management
 - `/admin` - Admin panel access
 
 ## Application Flow
 
 ### For Visitors (Unauthenticated)
-1. **Homepage**: Browse all available snacks
-2. **Login Required**: Click "Login to Order" to authenticate
-3. **Registration**: Create account with first name, last name, email, password
+1. **Gallery**: Browse available emerald NFTs
+2. **Learn**: Read about certification process
+3. **Sign Up**: Create account to start minting
 
 ### For Regular Users
-1. **Browse & Order**: View snacks and click "Order Now"
-2. **Order Form**: Select quantity and place order
-3. **Order Confirmation**: Redirected to "My Orders" with success message
-4. **Order History**: View all personal orders with status
+1. **Connect Wallet**: Link MetaMask to the platform
+2. **Browse & Mint**: Select emeralds and mint NFTs
+3. **View Collection**: Track owned NFTs in personal dashboard
 
 ### For Admin Users
-1. **Admin Dashboard**: Access via navigation or direct link  
-2. **Order Overview**: See statistics and all orders
-3. **Status Management**: Update order status with real-time buttons
-4. **Inventory Management**: Access full CMS admin panel
+1. **Scanner Setup**: Access hardware bridge instructions
+2. **Inventory Management**: Add/edit emerald data through CMS
+3. **Monitor System**: Track minting activity and user engagement
 
-## Responsive Design
+## Hardware Bridge Setup
 
-The application is fully responsive with breakpoints:
-- **Desktop**: 1200px+ (full grid layout, side-by-side forms)
-- **Tablet**: 768px-1199px (adapted grid, stacked layouts)
-- **Mobile**: <768px (single column, touch-friendly buttons)
+### Python Dependencies
+```bash
+pip install opencv-python requests
+```
+
+### Running the Scanner
+```bash
+python src/scanner_client.py
+```
+
+The script will:
+1. Initialize camera/microscope
+2. Capture high-resolution images
+3. Upload to backend API
+4. Generate IPFS metadata
+5. Store in database for minting
+
+## Smart Contract
+
+### Deployment
+```bash
+npx hardhat compile
+npx hardhat run scripts/deploy.js --network mumbai
+```
+
+### Contract Features
+- ERC-721 standard compliance
+- Limited supply (2,300 tokens)
+- Gas-optimized minting
+- Admin controls for metadata URI
+- Fund withdrawal functionality
 
 ## Security Features
 
 - **Role-based Access Control**: Proper separation of user and admin permissions
-- **Authentication Required**: Protected routes for ordering and admin functions
-- **Data Validation**: Server-side validation for all order data
-- **Price Verification**: Server validates prices to prevent manipulation
+- **IPFS Permanence**: Immutable image and metadata storage
+- **Blockchain Verification**: On-chain ownership records
+- **Hardware Authentication**: Physical scanning prevents duplication
 
 ## Deployment
 
 ### Using Payload Cloud
 1. Connect your repository to Payload Cloud
 2. Configure environment variables
-3. Deploy automatically with MongoDB and S3 storage
+3. Deploy automatically with PostgreSQL
 
 ### Using Vercel
 1. Connect repository to Vercel
 2. Configure Vercel Postgres database
 3. Set environment variables
-4. Deploy
+4. Deploy with custom build command
 
 ## Development Commands
 
@@ -194,9 +218,9 @@ pnpm lint         # Run ESLint
 
 For questions or issues:
 - Check the [Payload CMS documentation](https://payloadcms.com/docs)
-- Review the Next.js documentation
+- Review the Polygon documentation
 - Open an issue in the repository
 
 ---
 
-**Built with ❤️ using Payload CMS and Next.js**
+**Built with ❤️ using Payload CMS, Next.js, and Polygon**

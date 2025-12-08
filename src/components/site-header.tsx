@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { LogoutButton } from '@/components/logout-button'
 
 export interface SiteHeaderProps {
   variant?: 'full' | 'simple'
@@ -32,6 +33,12 @@ export function SiteHeader({
           {/* Navigation */}
           <nav className="hidden md:flex items-center gap-6 text-sm">
             <Link
+              href="/gallery"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Gallery
+            </Link>
+            <Link
               href="/#process-and-pricing"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
@@ -47,14 +54,33 @@ export function SiteHeader({
 
           {/* Actions */}
           <div className="flex items-center gap-2 md:gap-4">
-            {user?.role === 'admin' && (
-              <Button asChild variant="ghost">
-                <Link href="/admin">Admin Panel</Link>
-              </Button>
+            {user ? (
+              <>
+                <Button asChild variant="ghost">
+                  <Link href="/my-nfts">My NFTs</Link>
+                </Button>
+                {user.role === 'admin' && (
+                  <>
+                    <Button asChild variant="ghost">
+                      <Link href="/scanner">Scanner</Link>
+                    </Button>
+                    <Button asChild variant="ghost">
+                      <Link href="/admin">Admin Panel</Link>
+                    </Button>
+                  </>
+                )}
+                <LogoutButton />
+              </>
+            ) : (
+              <>
+                <Button asChild variant="ghost">
+                  <Link href="/login">Sign In</Link>
+                </Button>
+                <Button asChild>
+                  <Link href="/mint">Mint NFT</Link>
+                </Button>
+              </>
             )}
-            <Button asChild>
-              <Link href="/mint">Mint NFT</Link>
-            </Button>
           </div>
         </div>
       </header>
@@ -64,7 +90,7 @@ export function SiteHeader({
   // Simple variant (for auth pages, etc.)
   return (
     <div className={`text-center ${className}`}>
-      <Link href="/" className="text-2xl font-bold hover:text-primary transition-colors">
+      <Link href="/" className="text-xl font-bold hover:text-primary transition-colors">
         The Emerald Standard
       </Link>
       {title && <h2 className="mt-6 text-3xl font-bold text-foreground">{title}</h2>}

@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     'campaign-inquiries': CampaignInquiry;
+    emeralds: Emerald;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -79,6 +80,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'campaign-inquiries': CampaignInquiriesSelect<false> | CampaignInquiriesSelect<true>;
+    emeralds: EmeraldsSelect<false> | EmeraldsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -180,6 +182,23 @@ export interface CampaignInquiry {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "emeralds".
+ */
+export interface Emerald {
+  id: number;
+  stoneId: string;
+  weight: number;
+  grade: 'AAA' | 'AA' | 'A';
+  origin: string;
+  image: number | Media;
+  ipfsHash?: string | null;
+  tokenId?: number | null;
+  minted?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -196,6 +215,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'campaign-inquiries';
         value: number | CampaignInquiry;
+      } | null)
+    | ({
+        relationTo: 'emeralds';
+        value: number | Emerald;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -295,6 +318,22 @@ export interface CampaignInquiriesSelect<T extends boolean = true> {
   logo?: T;
   message?: T;
   status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "emeralds_select".
+ */
+export interface EmeraldsSelect<T extends boolean = true> {
+  stoneId?: T;
+  weight?: T;
+  grade?: T;
+  origin?: T;
+  image?: T;
+  ipfsHash?: T;
+  tokenId?: T;
+  minted?: T;
   updatedAt?: T;
   createdAt?: T;
 }
