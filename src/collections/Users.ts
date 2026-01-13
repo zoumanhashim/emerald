@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import { checkRole } from './access'
+import { admins, adminsOnly, adminsOrSelf, anyone, checkRole } from './access'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -16,7 +16,7 @@ export const Users: CollectionConfig = {
           <html>
             <body>
             You are receiving this because you (or someone else) have requested the reset of the password for your account. Please click on the following link, or paste this into your browser to complete the process: ${resetPasswordURL} If you did not request this, please ignore this email and your password will remain unchanged.
-
+              
             </body>
           </html>
         `
@@ -24,31 +24,10 @@ export const Users: CollectionConfig = {
     },
   },
   access: {
-    create: ({ req }) => {
-      // Allow anyone to create a user account (for registration)
-      return true
-    },
-    read: ({ req: { user } }) => {
-      if (!user) return false
-      if (checkRole(['admin'], user)) return true
-      // Users can read their own profile
-      return {
-        id: {
-          equals: user.id,
-        },
-      }
-    },
-    update: ({ req: { user } }) => {
-      if (!user) return false
-      if (checkRole(['admin'], user)) return true
-      // Users can update their own profile
-      return {
-        id: {
-          equals: user.id,
-        },
-      }
-    },
-    admin: ({ req: { user } }) => checkRole(['admin'], user),
+    create: anyone, // Allow anyone to create a user account (for registration)
+    read: adminsOrSelf, // Allow users to read their own profile, admins can read all
+    update: adminsOrSelf, // Allow users to update their own profile, admins can update all
+    admin: adminsOnly,
   },
   fields: [
     {
@@ -67,9 +46,9 @@ export const Users: CollectionConfig = {
       defaultValue: 'user',
       required: true,
       access: {
-        read: ({ req: { user } }) => checkRole(['admin'], user),
-        create: ({ req: { user } }) => checkRole(['admin'], user),
-        update: ({ req: { user } }) => checkRole(['admin'], user),
+        read: adminsOnly,
+        create: adminsOnly,
+        update: adminsOnly,
       },
     },
     {

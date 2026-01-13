@@ -7,8 +7,8 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
-import { CampaignInquiries } from './collections/CampaignInquiries'
-import { Emeralds } from './collections/Emeralds'
+import { Products } from './collections/Products'
+import { Orders } from './collections/Orders'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -25,6 +25,11 @@ export const getServerSideURL = () => {
 
 export default buildConfig({
   admin: {
+    components: {
+      // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
+      // Feel free to delete this at any time. Simply remove the line below and the import `BeforeDashboard` statement on line 15.
+      beforeDashboard: ['@/components/before-dashboard'],
+    },
     user: Users.slug,
     importMap: {
       baseDir: path.resolve(dirname),
@@ -32,7 +37,7 @@ export default buildConfig({
   },
   serverURL: getServerSideURL(),
   cors: [getServerSideURL()].filter(Boolean) as string[],
-  collections: [Users, Media, CampaignInquiries, Emeralds],
+  collections: [Users, Media, Products, Orders],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

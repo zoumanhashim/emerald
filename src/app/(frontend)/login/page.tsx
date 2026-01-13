@@ -66,7 +66,7 @@ function LoginForm() {
         const errorData = await response.json()
         setError(errorData.message || 'Login failed. Please check your credentials.')
       }
-    } catch (_err) {
+    } catch (err) {
       setError('Login failed. Please try again.')
     } finally {
       setIsSubmitting(false)
@@ -83,9 +83,9 @@ function LoginForm() {
               Don&apos;t have an account?{' '}
               <Link
                 href="/register"
-                className="font-medium text-primary transition-all hover:brightness-90"
+                className="font-medium text-yellow-300 hover:text-yellow-400"
               >
-                Sign up to get started
+                Sign up to list items
               </Link>
             </>
           }
@@ -133,7 +133,7 @@ function LoginForm() {
                   </label>
                   <Link
                     href="/forgot-password"
-                    className="text-sm font-medium text-primary transition-all hover:brightness-90"
+                    className="text-sm font-medium text-yellow-300 hover:text-yellow-400"
                   >
                     Forgot password?
                   </Link>

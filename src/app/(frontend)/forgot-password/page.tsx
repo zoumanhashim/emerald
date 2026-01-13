@@ -42,7 +42,7 @@ export default function ForgotPasswordPage() {
         const errorData = await response.json()
         setError(errorData.message || 'Failed to send reset email. Please try again.')
       }
-    } catch (_err) {
+    } catch (err) {
       setError('Failed to send reset email. Please try again.')
     } finally {
       setIsSubmitting(false)
@@ -101,7 +101,7 @@ export default function ForgotPasswordPage() {
               Remember your password?{' '}
               <Link
                 href="/login"
-                className="font-medium text-primary transition-all hover:brightness-90"
+                className="font-medium text-yellow-300 hover:text-yellow-400"
               >
                 Sign in
               </Link>

@@ -69,8 +69,8 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    'campaign-inquiries': CampaignInquiry;
-    emeralds: Emerald;
+    products: Product;
+    orders: Order;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -79,8 +79,8 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    'campaign-inquiries': CampaignInquiriesSelect<false> | CampaignInquiriesSelect<true>;
-    emeralds: EmeraldsSelect<false> | EmeraldsSelect<true>;
+    products: ProductsSelect<false> | ProductsSelect<true>;
+    orders: OrdersSelect<false> | OrdersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -165,35 +165,38 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "campaign-inquiries".
+ * via the `definition` "products".
  */
-export interface CampaignInquiry {
+export interface Product {
   id: number;
-  contactName: string;
-  contactEmail: string;
-  contactPhone?: string | null;
-  city: string;
-  quantity: number;
-  logo: number | Media;
-  message?: string | null;
-  status?: ('new' | 'contacted' | 'closed') | null;
+  name: string;
+  description: string;
+  price: number;
+  image?: (number | null) | Media;
+  /**
+   * Use this for placeholder images or external image URLs. Either image or imageUrl should be provided.
+   */
+  imageUrl?: string | null;
+  available?: boolean | null;
+  category: 'emerald' | 'ruby' | 'sapphire' | 'diamond' | 'other';
   updatedAt: string;
   createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "emeralds".
+ * via the `definition` "orders".
  */
-export interface Emerald {
+export interface Order {
   id: number;
-  stoneId: string;
-  weight: number;
-  grade: 'AAA' | 'AA' | 'A';
-  origin: string;
-  image: number | Media;
-  ipfsHash?: string | null;
-  tokenId?: number | null;
-  minted?: boolean | null;
+  user: number | User;
+  items: {
+    product: number | Product;
+    quantity: number;
+    id?: string | null;
+  }[];
+  status: 'pending' | 'completed' | 'cancelled';
+  totalAmount: number;
+  orderDate: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -213,12 +216,12 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
-        relationTo: 'campaign-inquiries';
-        value: number | CampaignInquiry;
+        relationTo: 'products';
+        value: number | Product;
       } | null)
     | ({
-        relationTo: 'emeralds';
-        value: number | Emerald;
+        relationTo: 'orders';
+        value: number | Order;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -307,33 +310,35 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "campaign-inquiries_select".
+ * via the `definition` "products_select".
  */
-export interface CampaignInquiriesSelect<T extends boolean = true> {
-  contactName?: T;
-  contactEmail?: T;
-  contactPhone?: T;
-  city?: T;
-  quantity?: T;
-  logo?: T;
-  message?: T;
-  status?: T;
+export interface ProductsSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  price?: T;
+  image?: T;
+  imageUrl?: T;
+  available?: T;
+  category?: T;
   updatedAt?: T;
   createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "emeralds_select".
+ * via the `definition` "orders_select".
  */
-export interface EmeraldsSelect<T extends boolean = true> {
-  stoneId?: T;
-  weight?: T;
-  grade?: T;
-  origin?: T;
-  image?: T;
-  ipfsHash?: T;
-  tokenId?: T;
-  minted?: T;
+export interface OrdersSelect<T extends boolean = true> {
+  user?: T;
+  items?:
+    | T
+    | {
+        product?: T;
+        quantity?: T;
+        id?: T;
+      };
+  status?: T;
+  totalAmount?: T;
+  orderDate?: T;
   updatedAt?: T;
   createdAt?: T;
 }

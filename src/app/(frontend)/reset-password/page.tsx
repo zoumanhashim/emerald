@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, Suspense } from 'react'
 import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -17,6 +17,7 @@ function ResetPasswordForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
+  const router = useRouter()
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
 
@@ -81,7 +82,7 @@ function ResetPasswordForm() {
         const errorData = await response.json()
         setError(errorData.message || 'Failed to reset password. Please try again.')
       }
-    } catch (_err) {
+    } catch (err) {
       setError('Failed to reset password. Please try again.')
     } finally {
       setIsSubmitting(false)

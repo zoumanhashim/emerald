@@ -1,22 +1,23 @@
 import React from 'react'
+import { CartProvider } from '@/lib/cart-context'
+import { CartSidebar } from '@/components/cart-sidebar'
 import '../globals.css'
-import { Providers } from '@/components/providers'
 
 export const metadata = {
-  description:
-    "Own authenticated Panjshir Valley emeralds through blockchain certification. Each NFT represents a real, scanned emerald stone.",
-  title: 'The Emerald Standard | Blockchain Emerald NFTs',
+  description: 'A mini store template using Payload built with Dyad.',
+  title: 'Dyad Portal Mini Store Template',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <body>
-        <Providers>
+        <CartProvider>
           <main>{children}</main>
-        </Providers>
+          <CartSidebar />
+        </CartProvider>
       </body>
     </html>
   )
