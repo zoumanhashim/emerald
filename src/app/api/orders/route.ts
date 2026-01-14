@@ -25,30 +25,30 @@ export async function POST(request: NextRequest) {
     let computedTotal = 0
     for (const item of items) {
       const quantity = Number(item?.quantity)
-      const productId = item?.product
+      const snackId = item?.snack
 
       if (
-        !productId ||
+        !snackId ||
         !Number.isFinite(quantity) ||
         !Number.isInteger(quantity) ||
         quantity <= 0 ||
         quantity > 100
       ) {
-        return NextResponse.json({ error: 'Invalid item quantity or product id' }, { status: 400 })
+        return NextResponse.json({ error: 'Invalid item quantity or snack id' }, { status: 400 })
       }
 
-      const product = await payload.findByID({
-        collection: 'products',
-        id: productId,
+      const snack = await payload.findByID({
+        collection: 'snacks',
+        id: snackId,
       })
 
-      if (!product || !product.available) {
-        return NextResponse.json({ error: `Product ${productId} is not available` }, { status: 400 })
+      if (!snack || !snack.available) {
+        return NextResponse.json({ error: `Snack ${snackId} is not available` }, { status: 400 })
       }
 
-      const price = Number(product.price)
+      const price = Number(snack.price)
       if (!Number.isFinite(price) || price < 0) {
-        return NextResponse.json({ error: `Invalid price for product ${productId}` }, { status: 400 })
+        return NextResponse.json({ error: `Invalid price for snack ${snackId}` }, { status: 400 })
       }
 
       computedTotal += price * quantity

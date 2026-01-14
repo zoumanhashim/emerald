@@ -16,7 +16,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
-import { Badge } from '@/components/ui/badge'
 
 export default async function HomePage() {
   const headers = await getHeaders()
@@ -24,8 +23,8 @@ export default async function HomePage() {
   const payload = await getPayload({ config: payloadConfig })
   const { user } = await payload.auth({ headers })
 
-  const products = await payload.find({
-    collection: 'products',
+  const snacks = await payload.find({
+    collection: 'snacks',
     where: {
       available: {
         equals: true,
@@ -35,16 +34,16 @@ export default async function HomePage() {
   })
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <SiteHeader variant="full" user={user} />
 
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="py-20 md:py-32 text-center">
+        <section className="py-16 md:py-24 text-center bg-black/20 border-b-4 border-black/50">
           <div className="w-full max-w-7xl mx-auto px-4">
-            <h1 className="text-4xl md:text-6xl">those who strugle</h1>
-            <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Crafted by nature, perfected by time.
+            <h1 className="text-4xl md:text-6xl text-white">those who strugle</h1>
+            <p className="mt-6 text-lg text-yellow-300 tracking-wider font-bold">
+              limited quantity crypto only
             </p>
           </div>
         </section>
@@ -52,18 +51,18 @@ export default async function HomePage() {
         {/* Collection Section */}
         <section id="collection" className="py-12 md:py-16">
           <div className="w-full max-w-7xl mx-auto px-4">
-            {products.docs.length === 0 ? (
-              <div className="text-center py-20 border rounded-lg p-8">
-                <h2 className="text-2xl">No products available...</h2>
-                <p className="mt-4 text-muted-foreground">New items will be available soon!</p>
+            {snacks.docs.length === 0 ? (
+              <div className="text-center py-20 bg-black/20 border-2 border-stone-900 p-8">
+                <h2 className="text-2xl">Restocking...</h2>
+                <p className="mt-4 text-stone-300">New items will be available soon!</p>
               </div>
             ) : (
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {products.docs.map((item: any) => (
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-4">
+                {snacks.docs.map((item: any) => (
                   <Dialog key={item.id}>
                     <DialogTrigger asChild>
-                      <div className="group cursor-pointer overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-md">
-                        <div className="aspect-square bg-muted flex items-center justify-center p-4">
+                      <div className="group cursor-pointer text-center">
+                        <div className="bg-black/30 border-2 border-t-stone-600 border-l-stone-600 border-b-stone-900 border-r-stone-900 p-2 aspect-square flex items-center justify-center transition-colors duration-200 hover:bg-white/10">
                           <div className="relative w-full h-full">
                             {((item.image && typeof item.image === 'object') ||
                               item.imageUrl) && (
@@ -79,22 +78,35 @@ export default async function HomePage() {
                                     : undefined) || item.name
                                 }
                                 fill
-                                className="object-contain group-hover:scale-105 transition-transform duration-300"
+                                className="object-cover"
+                                style={{ imageRendering: 'pixelated' }}
                               />
                             )}
                           </div>
                         </div>
-                        <div className="p-4 border-t">
-                          <h3 className="font-semibold truncate">{item.name}</h3>
-                          <p className="text-lg font-bold text-primary">${item.price.toFixed(2)}</p>
+                        <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                          <p className="text-sm text-white bg-black/70 px-2 py-1 inline-block">
+                            {item.name}
+                          </p>
+                          <p className="text-xs text-yellow-300 bg-black/70 px-2 py-1 inline-block">
+                            ${item.price.toFixed(2)}
+                          </p>
                         </div>
                       </div>
                     </DialogTrigger>
 
-                    <DialogContent className="bg-card max-w-4xl">
-                      <div className="grid md:grid-cols-2 gap-8 items-center">
+                    <DialogContent className="bg-stone-800 border-4 border-t-stone-600 border-l-stone-600 border-b-stone-900 border-r-stone-900 p-0 max-w-3xl text-white shadow-2xl">
+                      <div
+                        className="absolute inset-0 bg-repeat opacity-10"
+                        style={{
+                          backgroundImage:
+                            'linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)',
+                          backgroundSize: '4px 4px',
+                        }}
+                      />
+                      <div className="grid md:grid-cols-2 gap-0">
                         {/* Product Image */}
-                        <div className="relative aspect-square bg-muted rounded-lg">
+                        <div className="relative aspect-square bg-black/30 border-r-4 border-black/50 p-4">
                           {((item.image && typeof item.image === 'object') ||
                             item.imageUrl) && (
                             <Image
@@ -110,36 +122,40 @@ export default async function HomePage() {
                               }
                               fill
                               className="object-contain"
+                              style={{ imageRendering: 'pixelated' }}
                             />
                           )}
                         </div>
 
                         {/* Product Details */}
-                        <div className="flex flex-col h-full py-6">
+                        <div className="p-6 flex flex-col">
                           <DialogHeader>
-                            <DialogTitle className="text-3xl">
+                            <DialogTitle className="text-2xl text-yellow-300">
                               {item.name}
                             </DialogTitle>
-                            <DialogDescription className="pt-1">
-                              <Badge>{item.category}</Badge>
+                            <DialogDescription className="text-stone-400 uppercase text-xs tracking-widest pt-1">
+                              {item.category}
                             </DialogDescription>
                           </DialogHeader>
 
-                          <p className="text-muted-foreground mt-4 leading-relaxed flex-grow">
+                          <p className="text-stone-300 mt-4 leading-relaxed flex-grow">
                             {item.description}
                           </p>
 
                           <div className="mt-6">
-                            <p className="text-4xl font-bold">
+                            <p className="text-3xl font-bold text-white">
                               ${item.price.toFixed(2)}
                             </p>
                           </div>
 
                           <div className="mt-6">
                             {user ? (
-                              <AddToCartButton product={item} />
+                              <AddToCartButton snack={item} />
                             ) : (
-                              <Button asChild size="lg" className="w-full">
+                              <Button
+                                asChild
+                                className="w-full bg-green-600 text-white border-2 border-t-green-500 border-l-green-500 border-b-green-800 border-r-green-800 hover:bg-green-700 active:border-t-green-800 active:border-l-green-800 active:border-b-green-500 active-border-r-green-500 rounded-none py-3 text-base"
+                              >
                                 <Link href="/login">Sign In to Purchase</Link>
                               </Button>
                             )}

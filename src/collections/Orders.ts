@@ -25,9 +25,9 @@ export const Orders: CollectionConfig = {
       type: 'array',
       fields: [
         {
-          name: 'product',
+          name: 'snack',
           type: 'relationship',
-          relationTo: 'products',
+          relationTo: 'snacks',
           required: true,
         },
         {
